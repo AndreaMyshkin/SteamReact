@@ -114,7 +114,7 @@ placeholder="Confirmar contraseña"
 }
 
 const SignUpLink = () => (
-<p>Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+<p>¿No tienes una cuenta STEAM? <Link to={ROUTES.SIGN_UP}> Únete</Link>
 </p>
 )
 const SignUpForm = compose(

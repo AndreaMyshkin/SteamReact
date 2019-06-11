@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import { SignUpLink } from '../SignUp'
 import { withFirebase } from '../Firebase'
+import { PasswordForgetLink } from '../PasswordForget';
 import * as ROUTES from '../../Constants/routesFirebase'
 import './signIn.css'
 
@@ -11,6 +12,7 @@ const SignInPage = () => (
   <div className="white col s10 offset-s1 l4 offset-l4 signIn-card">
   <h1 className="center grey-text text-darken-2">SignIn</h1>
    <SignInForm />
+   <PasswordForgetLink />
   <SignUpLink /></div>
 </div>
 )
@@ -64,7 +66,7 @@ onChange={this.onChange}
 type="password"
 placeholder="Password"
 />
-<button disabled={isInvalid} type="submit">
+<button disabled={isInvalid} type="submit" className="btn-small blue col l12">
 Sign In
 </button>
 {error && <p>{error.message}</p>}
