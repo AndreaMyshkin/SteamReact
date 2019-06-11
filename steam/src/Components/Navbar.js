@@ -2,9 +2,16 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import SignOutButton from './SignOut'
 import * as ROUTES from '../Constants/routesFirebase'
+import { AuthUserContext } from './Session'
 
-const Navigation = ({ authUser }) => (
-  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+const Navigation = () => (
+  <div>
+    <AuthUserContext.Consumer>
+      {authUser =>
+        authUser ? <NavigationAuth /> : <NavigationNonAuth />
+      }
+    </AuthUserContext.Consumer>
+  </div>
 )
 
 const NavigationAuth = () => (
@@ -15,6 +22,7 @@ const NavigationAuth = () => (
         <li> <Link to={ROUTES.FORUM}>Foro</Link></li>
         <li> <Link to={ROUTES.HOME}>Home</Link></li>
         <li><Link to={ROUTES.MYPROFILE}>Mi Perfil</Link></li>
+        <li><Link to={ROUTES.ACCOUNT}>Account</Link></li>
         <li><SignOutButton /></li>
       </ul>
     </div>

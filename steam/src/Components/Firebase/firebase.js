@@ -24,11 +24,7 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(email, password)
 
 
-  doSignOut = () => {
-    this.auth.signOut()
-    alert('vuelve pronto')
-
-  }
+    doSignOut = () => this.auth.signOut();
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
 
