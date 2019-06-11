@@ -25,8 +25,8 @@
 //           <Route path='/SignInPage' component={SignInPage} />
 //           {/* <Route exact path='/' component={LandingPage} />
 //           // <Route path='/SignInPage' component={SignInPage} />
-//           <Route path='/PasswordForgetPage' component={PasswordForgetPage} /> 
-//           <Route path='/AccountPage' component={AccountPage} />   
+//           <Route path='/PasswordForgetPage' component={PasswordForgetPage} />
+//           <Route path='/AccountPage' component={AccountPage} />
 //           <Route path='/AdminPage' component={AdminPage} /> */}
 //           <Route path='/myProfile' component={MyProfile} />
 //         </div>
