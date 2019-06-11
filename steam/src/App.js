@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Navigation from './Components/Navbar'
 import SignUpPage from './Components/SignUp'
 import SignInPage from './Components/SignIn/index'
-import Home from './Views/Home'
+import HomePage from './Views/Home'
 import Forum from './Views/Forum'
 import Comunity from './Views/Comunity'
 import MyProfile from './Views/MyProfile'
@@ -21,7 +21,7 @@ const App = () => (
       <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
       <Route path={ROUTES.COMUNITY} component={Comunity} />
       <Route path={ROUTES.FORUM} component={Forum} />
-      <Route path={ROUTES.HOME} component={Home} />
+      <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.MYPROFILE} component={MyProfile} />

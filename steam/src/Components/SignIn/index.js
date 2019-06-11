@@ -18,34 +18,34 @@ const SignInPage = () => (
 )
 
 const INITIAL_STATE = {
-email: '',
-password: '',
-error: null,
+  email: '',
+  password: '',
+  error: null,
 }
 
 class SignInFormBase extends Component {
-constructor(props) {
-super(props)
-this.state = { ...INITIAL_STATE }
-}
+  constructor(props) {
+    super(props)
+    this.state = { ...INITIAL_STATE }
+  }
 
-onSubmit = event => {
-const { email, password } = this.state
-this.props.firebase
-.doSignInWithEmailAndPassword(email, password)
+  onSubmit = event => {
+    const { email, password } = this.state
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
 
-.then(() => {
-this.setState({ ...INITIAL_STATE })
-this.props.history.push(ROUTES.HOME)
-})
-.catch(error => {
-this.setState({ error })
-})
-event.preventDefault()
-}
-onChange = event => {
-this.setState({ [event.target.name]: event.target.value })
-}
+      .then(() => {
+        this.setState({ ...INITIAL_STATE })
+        this.props.history.push(ROUTES.HOME)
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+    event.preventDefault()
+  }
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
 render() {
 const { email, password, error } = this.state
@@ -69,15 +69,15 @@ placeholder="Password"
 <button disabled={isInvalid} type="submit" className="btn-small blue col l12">
 Sign In
 </button>
-{error && <p>{error.message}</p>}
-</form>
-)
+        {error && <p>{error.message}</p>}
+      </form>
+    )
 
-}
+  }
 }
 const SignInForm = compose(
-withRouter,
-withFirebase,
+  withRouter,
+  withFirebase,
 )(SignInFormBase)
 export default SignInPage;
 export { SignInForm }

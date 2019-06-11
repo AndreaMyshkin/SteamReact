@@ -2,7 +2,6 @@ import app from 'firebase/app'
 import 'firebase/auth'
 // import * as ROUTES from '../../Constants/routesFirebase'
 
-
 const config = {
   apiKey: 'AIzaSyDcxv6ZSQj09RBkfsP9PXzj47PiDhmB2o8',
   authDomain: 'steamreact.firebaseapp.com',
@@ -14,27 +13,23 @@ const config = {
 }
 
 class Firebase {
-  constructor () {
+  constructor() {
     app.initializeApp(config)
     this.auth = app.auth()
   }
-  
+
   doCreateUserWithEmailAndPassword = (email, password) =>
-  this.auth.createUserWithEmailAndPassword(email, password)
+    this.auth.createUserWithEmailAndPassword(email, password)
   doSignInWithEmailAndPassword = (email, password) =>
-  this.auth.signInWithEmailAndPassword(email, password)
-  
+    this.auth.signInWithEmailAndPassword(email, password)
 
-  doSignOut = ()=>{
-  this.auth.signOut()
-  alert('vuelve pronto')
 
-  }
-  
+    doSignOut = () => this.auth.signOut();
+
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
-  
+
   doPasswordUpdate = password =>
-  this.auth.currentUser.updatePassword(password)
+    this.auth.currentUser.updatePassword(password)
 }
 
 export default Firebase
