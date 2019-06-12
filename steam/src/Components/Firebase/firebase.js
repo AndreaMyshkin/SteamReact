@@ -16,10 +16,10 @@ const config = {
 class Firebase {
   constructor() {
     app.initializeApp(config)
-    this.auth = app.auth()
-    this.db = app.database()
-    this.googleProvider = new app.auth.GoogleAuthProvider()
-    this.facebookProvider = new app.auth.FacebookAuthProvider()
+      this.auth = app.auth()
+      this.db = app.database()
+      this.googleProvider = new app.auth.GoogleAuthProvider()
+      this.facebookProvider = new app.auth.FacebookAuthProvider()
   }
 /* Autenticación con Firebase - email */
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -41,7 +41,6 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password)
 
-  // *** User API ***
   user = uid => this.db.ref(`users/${uid}`)
   users = () => this.db.ref('users')
 

@@ -16,8 +16,8 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
   <nav>
-    <div class='nav-wrapper black'>
-      <ul class='right hide-on-med-and-down'>
+    <div className='nav-wrapper black'>
+      <ul className='right hide-on-med-and-down'>
         <li><Link to={ROUTES.COMUNITY}>Comunidad Steam</Link></li>
         <li> <Link to={ROUTES.FORUM}>Foro</Link></li>
         <li> <Link to={ROUTES.HOME}>Home</Link></li>
@@ -30,8 +30,8 @@ const NavigationAuth = () => (
 )
 const NavigationNonAuth = () => (
   <nav>
-    <div class='nav-wrapper black'>
-      <ul class='right hide-on-med-and-down'>
+    <div className='nav-wrapper black'>
+      <ul className='right hide-on-med-and-down'>
         <li><Link to={ROUTES.LANDING}>Landing</Link> </li>
         <li><Link to={ROUTES.SIGN_IN}>Sign In</Link></li>
       </ul>

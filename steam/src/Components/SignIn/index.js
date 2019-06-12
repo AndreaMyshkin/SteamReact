@@ -8,9 +8,9 @@ import * as ROUTES from '../../Constants/routesFirebase'
 import './signIn.css'
 
 const SignInPage = () => (
-  <div className="row">
-    <div className="white col s10 offset-s1 l4 offset-l4 signIn-card">
-      <h1 className="center grey-text text-darken-2">SignIn</h1>
+  <div className='row'>
+    <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
+      <h1 className='center grey-text text-darken-2'>SignIn</h1>
       <SignInForm />
       <SignInGoogle />
       <SignInFacebook />
@@ -55,20 +55,20 @@ class SignInFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          name="email"
+          name='email'
           value={email}
           onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
+          type='text'
+          placeholder='Email Address'
         />
         <input
-          name="password"
+          name='password'
           value={password}
           onChange={this.onChange}
-          type="password"
-          placeholder="Password"
+          type='password'
+          placeholder='Password'
         />
-        <button disabled={isInvalid} type="submit" className="btn-small blue col l12">
+        <button disabled={isInvalid} type='submit' className='btn-small blue col l12'>
           Sign In
 </button>
         {error && <p>{error.message}</p>}
@@ -109,7 +109,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <button id ='auth-google' className ='btn-small blue col l12' type='submit'>Sign In with Google</button>
         {error && <p>{error.message}</p>}
       </form>
     )
@@ -148,7 +148,7 @@ class SignInFacebookBase extends Component {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Facebook</button>
+        <button id ='auth-facebook' className ='btn-small blue col l12'type='submit'>Sign In with Facebook</button>
         {error && <p>{error.message}</p>}
       </form>
     )
