@@ -7,6 +7,15 @@ import { PasswordForgetLink } from '../PasswordForget'
 import * as ROUTES from '../../Constants/routesFirebase'
 import './signIn.css'
 
+const ERROR_CODE_ACCOUNT_EXISTS =
+  'auth/account-exists-with-different-credential'
+const ERROR_MSG_ACCOUNT_EXISTS = `
+An account with an E-Mail address to
+this social account already exists. Try to login from
+this account instead and associate your social accounts on
+your personal account page.
+`
+
 const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
@@ -25,7 +34,7 @@ const INITIAL_STATE = {
   password: '',
   error: null,
 }
-
+/* Login con mail */ 
 class SignInFormBase extends Component {
   constructor(props) {
     super(props)
@@ -42,6 +51,9 @@ class SignInFormBase extends Component {
         this.props.history.push(ROUTES.HOME)
       })
       .catch(error => {
+        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+          error.message = ERROR_MSG_ACCOUNT_EXISTS
+          }
         this.setState({ error })
       })
     event.preventDefault()
@@ -71,14 +83,14 @@ class SignInFormBase extends Component {
         />
         <button disabled={isInvalid} type='submit' className='btn-small blue col l12'>
           Sign In
-</button>
+        </button>
         {error && <p>{error.message}</p>}
       </form>
     )
 
   }
 }
-
+/* Login con Google */ 
 class SignInGoogleBase extends Component {
   constructor(props) {
     super(props)
@@ -102,6 +114,9 @@ class SignInGoogleBase extends Component {
         this.props.history.push(ROUTES.HOME)
       })
       .catch(error => {
+        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+          error.message = ERROR_MSG_ACCOUNT_EXISTS
+          }
         this.setState({ error })
       })
     event.preventDefault()
@@ -116,7 +131,7 @@ class SignInGoogleBase extends Component {
     )
   }
 }
-
+/* Login con Facebook */ 
 class SignInFacebookBase extends Component {
   constructor(props) {
     super(props)
@@ -140,6 +155,9 @@ class SignInFacebookBase extends Component {
         this.props.history.push(ROUTES.HOME)
       })
       .catch(error => {
+        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+          error.message = ERROR_MSG_ACCOUNT_EXISTS
+          }
         this.setState({ error })
       })
     event.preventDefault()
@@ -155,7 +173,7 @@ class SignInFacebookBase extends Component {
     )
   }
 }
-
+/* Login con Twitter */ 
 class SignInTwitterBase extends Component {
   constructor(props) {
     super(props)
@@ -173,11 +191,11 @@ class SignInTwitterBase extends Component {
       })
     event.preventDefault()
   }
-  render() {
+  render () {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Twitter</button>
+        <button type='submit' className='btn-small blue col l12'>Sign In with Twitter</button>
         {error && <p>{error.message}</p>}
       </form>
     )
@@ -203,6 +221,6 @@ export default SignInPage
 const SignInTwitter = compose(
   withRouter,
   withFirebase,
-  )(SignInTwitterBase)
+)(SignInTwitterBase)
 
 export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter }

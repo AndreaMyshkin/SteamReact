@@ -14,18 +14,22 @@ const withAuthorization = condition => Component => {
         }
       )
     }
+
     componentWillUnmount () {
       this.listener()
     }
+
     render () {
       return (
         <Component {...this.props} />
       )
     }
   }
+
   return compose(
     withRouter,
     withFirebase
   )(WithAuthorization)
 }
+
 export default withAuthorization
