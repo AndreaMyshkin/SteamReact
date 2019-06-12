@@ -3,18 +3,20 @@ import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import { SignUpLink } from '../SignUp'
 import { withFirebase } from '../Firebase'
-import { PasswordForgetLink } from '../PasswordForget';
+import { PasswordForgetLink } from '../PasswordForget'
 import * as ROUTES from '../../Constants/routesFirebase'
 import './signIn.css'
 
 const SignInPage = () => (
-<div className="row">
-  <div className="white col s10 offset-s1 l4 offset-l4 signIn-card">
-  <h1 className="center grey-text text-darken-2">SignIn</h1>
-   <SignInForm />
-   <PasswordForgetLink />
-  <SignUpLink /></div>
-</div>
+  <div className="row">
+    <div className="white col s10 offset-s1 l4 offset-l4 signIn-card">
+      <h1 className="center grey-text text-darken-2">SignIn</h1>
+      <SignInForm />
+      <SignInGoogle />
+      <SignInFacebook />
+      <PasswordForgetLink />
+      <SignUpLink /></div>
+  </div>
 )
 
 const INITIAL_STATE = {
@@ -47,27 +49,27 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-render() {
-const { email, password, error } = this.state
-const isInvalid = password === '' || email === ''
-return (
-<form onSubmit={this.onSubmit}>
-<input
-name="email"
-value={email}
-onChange={this.onChange}
-type="text"
-placeholder="Email Address"
-/>
-<input
-name="password"
-value={password}
-onChange={this.onChange}
-type="password"
-placeholder="Password"
-/>
-<button disabled={isInvalid} type="submit" className="btn-small blue col l12">
-Sign In
+  render () {
+    const { email, password, error } = this.state
+    const isInvalid = password === '' || email === ''
+    return (
+      <form onSubmit={this.onSubmit}>
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <input
+          name="password"
+          value={password}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <button disabled={isInvalid} type="submit" className="btn-small blue col l12">
+          Sign In
 </button>
         {error && <p>{error.message}</p>}
       </form>
@@ -75,9 +77,98 @@ Sign In
 
   }
 }
+
+class SignInGoogleBase extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { error: null }
+  }
+  onSubmit = event => {
+    this.props.firebase
+      .doSignInWithGoogle ()
+      .then(socialAuthUser => {
+        // Create a user in your Firebase Realtime Database too
+        return this.props.firebase
+          .user(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.user.displayName,
+            email: socialAuthUser.user.email,
+            roles: {},
+          })
+      })
+      .then(socialAuthUser => {
+        this.setState({ error: null })
+        this.props.history.push(ROUTES.HOME)
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+    event.preventDefault()
+  }
+  render () {
+    const { error } = this.state
+    return (
+      <form onSubmit={this.onSubmit}>
+        <button type="submit">Sign In with Google</button>
+        {error && <p>{error.message}</p>}
+      </form>
+    )
+  }
+}
+
+class SignInFacebookBase extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { error: null }
+  }
+  onSubmit = event => {
+    this.props.firebase
+      .doSignInWithFacebook ()
+      .then(socialAuthUser => {
+        // Create a user in your Firebase Realtime Database too
+        return this.props.firebase
+          .user(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.additionalUserInfo.profile.name,
+            email: socialAuthUser.additionalUserInfo.profile.email,
+            roles: {},
+          })
+      })
+      .then(socialAuthUser => {
+        this.setState({ error: null })
+        this.props.history.push(ROUTES.HOME)
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+    event.preventDefault()
+  }
+
+  render () {
+    const { error } = this.state
+    return (
+      <form onSubmit={this.onSubmit}>
+        <button type="submit">Sign In with Facebook</button>
+        {error && <p>{error.message}</p>}
+      </form>
+    )
+  }
+}
+
+const SignInGoogle = compose(
+  withRouter,
+  withFirebase,
+)(SignInGoogleBase)
+
+const SignInFacebook = compose(
+  withRouter,
+  withFirebase,
+)(SignInFacebookBase)
+
 const SignInForm = compose(
   withRouter,
   withFirebase,
 )(SignInFormBase)
-export default SignInPage;
-export { SignInForm }
+export default SignInPage
+
+export { SignInForm, SignInGoogle, SignInFacebook }

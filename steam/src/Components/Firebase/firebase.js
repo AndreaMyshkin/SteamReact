@@ -1,5 +1,6 @@
 import app from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/database'
 // import * as ROUTES from '../../Constants/routesFirebase'
 
 const config = {
@@ -16,20 +17,34 @@ class Firebase {
   constructor() {
     app.initializeApp(config)
     this.auth = app.auth()
+    this.db = app.database()
+    this.googleProvider = new app.auth.GoogleAuthProvider()
+    this.facebookProvider = new app.auth.FacebookAuthProvider()
   }
-
+/* Autenticación con Firebase - email */
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password)
+ 
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password)
+/*   Autenticación con Gmail */
+  doSignInWithGoogle = () =>
+    this.auth.signInWithPopup(this.googleProvider)
+ /*   Autenticación con Facebook */ 
+  doSignInWithFacebook = () =>
+    this.auth.signInWithPopup(this.facebookProvider)
 
-
-    doSignOut = () => this.auth.signOut();
+  doSignOut = () => this.auth.signOut()
 
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email)
 
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password)
+
+  // *** User API ***
+  user = uid => this.db.ref(`users/${uid}`)
+  users = () => this.db.ref('users')
+
 }
 
 export default Firebase
