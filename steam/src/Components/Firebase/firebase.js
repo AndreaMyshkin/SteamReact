@@ -20,6 +20,7 @@ class Firebase {
       this.db = app.database()
       this.googleProvider = new app.auth.GoogleAuthProvider()
       this.facebookProvider = new app.auth.FacebookAuthProvider()
+      this.twitterProvider = new app.auth.TwitterAuthProvider()
   }
 /* Autenticación con Firebase - email */
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -33,6 +34,9 @@ class Firebase {
  /*   Autenticación con Facebook */ 
   doSignInWithFacebook = () =>
     this.auth.signInWithPopup(this.facebookProvider)
+/*   Autenticación con Twitter */ 
+  doSignInWithTwitter = () =>
+    this.auth.signInWithPopup(this.twitterProvider)
 
   doSignOut = () => this.auth.signOut()
 

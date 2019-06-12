@@ -14,6 +14,7 @@ const SignInPage = () => (
       <SignInForm />
       <SignInGoogle />
       <SignInFacebook />
+      <SignInTwitter />
       <PasswordForgetLink />
       <SignUpLink /></div>
   </div>
@@ -49,7 +50,7 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render () {
+  render() {
     const { email, password, error } = this.state
     const isInvalid = password === '' || email === ''
     return (
@@ -85,7 +86,7 @@ class SignInGoogleBase extends Component {
   }
   onSubmit = event => {
     this.props.firebase
-      .doSignInWithGoogle ()
+      .doSignInWithGoogle()
       .then(socialAuthUser => {
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase
@@ -105,11 +106,11 @@ class SignInGoogleBase extends Component {
       })
     event.preventDefault()
   }
-  render () {
+  render() {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button id ='auth-google' className ='btn-small blue col l12' type='submit'>Sign In with Google</button>
+        <button id='auth-google' className='btn-small blue col l12' type='submit'>Sign In with Google</button>
         {error && <p>{error.message}</p>}
       </form>
     )
@@ -123,7 +124,7 @@ class SignInFacebookBase extends Component {
   }
   onSubmit = event => {
     this.props.firebase
-      .doSignInWithFacebook ()
+      .doSignInWithFacebook()
       .then(socialAuthUser => {
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase
@@ -144,11 +145,39 @@ class SignInFacebookBase extends Component {
     event.preventDefault()
   }
 
-  render () {
+  render() {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button id ='auth-facebook' className ='btn-small blue col l12'type='submit'>Sign In with Facebook</button>
+        <button id='auth-facebook' className='btn-small blue col l12' type='submit'>Sign In with Facebook</button>
+        {error && <p>{error.message}</p>}
+      </form>
+    )
+  }
+}
+
+class SignInTwitterBase extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { error: null }
+  }
+  onSubmit = event => {
+    this.props.firebase
+      .doSignInWithTwitter()
+      .then(socialAuthUser => {
+        this.setState({ error: null })
+        this.props.history.push(ROUTES.HOME)
+      })
+      .catch(error => {
+        this.setState({ error })
+      })
+    event.preventDefault()
+  }
+  render() {
+    const { error } = this.state
+    return (
+      <form onSubmit={this.onSubmit}>
+        <button type="submit">Sign In with Twitter</button>
         {error && <p>{error.message}</p>}
       </form>
     )
@@ -171,4 +200,9 @@ const SignInForm = compose(
 )(SignInFormBase)
 export default SignInPage
 
-export { SignInForm, SignInGoogle, SignInFacebook }
+const SignInTwitter = compose(
+  withRouter,
+  withFirebase,
+  )(SignInTwitterBase)
+
+export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter }
