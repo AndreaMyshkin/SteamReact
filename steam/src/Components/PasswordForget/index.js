@@ -42,17 +42,17 @@ this.setState({ [event.target.name]: event.target.value });
 render() {
 const { email, error } = this.state;
 const isInvalid = email === '';
-return (<div className="row"><div className="col l6 offset-l1"><p className="text-password-forget center">¿Deseas restablecer tu contraseña?</p></div>
+return (<div className="row"><div className="col s10 offset-s1 l6 offset-l1 "><p className="text-password-forget center">¿Deseas restablecer tu contraseña?</p></div>
 <form onSubmit={this.onSubmit}  className="row">
 <input
-className="col l6 offset-l1 input-text"
+className=" col s10 offset-s1  l6 offset-l1 input-text"
 name="email"
 value={this.state.email}
 onChange={this.onChange}
 type="text"
 placeholder="Correo electrónico"
 />
-<button disabled={isInvalid} type="submit" className="col l3 offset-l1 btn-sendEmail btn-small waves-effect waves-light">
+<button disabled={isInvalid} type="submit" className="col s10 offset-s1 col l3 offset-l1 btn-sendEmail btn-small waves-effect waves-light">
 Enviar correo
 </button >
 {error && <p>{error.message}</p>}
