@@ -25,16 +25,16 @@ class Firebase {
 /* Autenticación con Firebase - email */
   doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password)
- 
+
   doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password)
 /*   Autenticación con Gmail */
   doSignInWithGoogle = () =>
     this.auth.signInWithPopup(this.googleProvider)
- /*   Autenticación con Facebook */ 
+ /*   Autenticación con Facebook */
   doSignInWithFacebook = () =>
     this.auth.signInWithPopup(this.facebookProvider)
-/*   Autenticación con Twitter */ 
+/*   Autenticación con Twitter */
   doSignInWithTwitter = () =>
     this.auth.signInWithPopup(this.twitterProvider)
 

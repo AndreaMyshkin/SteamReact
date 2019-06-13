@@ -28,6 +28,7 @@ const NavigationAuth = () => (
     </div>
   </nav>
 )
+
 const NavigationNonAuth = () => (
   <nav>
     <div className='nav-wrapper black'>
@@ -38,4 +39,5 @@ const NavigationNonAuth = () => (
     </div>
   </nav>
 )
+
 export default Navigation
