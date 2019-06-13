@@ -5,6 +5,7 @@ import { SignUpLink } from '../SignUp'
 import { withFirebase } from '../Firebase'
 import { PasswordForgetLink } from '../PasswordForget'
 import * as ROUTES from '../../Constants/routesFirebase'
+import LOGO from '../SignIn/LogoLogin'
 import './signIn.css'
 
 const ERROR_CODE_ACCOUNT_EXISTS =
@@ -19,7 +20,8 @@ your personal account page.
 const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
-      <h1 className='center grey-text text-darken-2'>SignIn</h1>
+      <h3 className='center welcome grey-text text-darken-2'>Bienvenido a</h3>
+      <LOGO />
       <SignInForm />
       <SignInGoogle />
       <SignInFacebook />
@@ -81,8 +83,8 @@ class SignInFormBase extends Component {
           type='password'
           placeholder='Password'
         />
-        <button disabled={isInvalid} type='submit' className='btn-small blue col l12'>
-          Sign In
+        <button disabled={isInvalid} type='submit' id= 'login100-form-btn' className= 'btn-small col l12'>
+          Entrar
         </button>
         {error && <p>{error.message}</p>}
       </form>
@@ -125,7 +127,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button id='auth-google' className='btn-small blue col l12' type='submit'>Sign In with Google</button>
+        <button id='auth-google' className='google-button button-social btn-small  col s1 m1 l1' type='submit'><i className="devicon-google-plain"></i></button>
         {error && <p>{error.message}</p>}
       </form>
     )
@@ -167,7 +169,7 @@ class SignInFacebookBase extends Component {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button id='auth-facebook' className='btn-small blue col l12' type='submit'>Sign In with Facebook</button>
+        <button id='auth-facebook' className='facebook-button button-social btn-small col s1 m1 l1' type='submit'><i className="devicon-facebook-plain"></i></button>
         {error && <p>{error.message}</p>}
       </form>
     )
@@ -195,7 +197,7 @@ class SignInTwitterBase extends Component {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
-        <button type='submit' className='btn-small blue col l12'>Sign In with Twitter</button>
+        <button type='submit' className='twitter-button button-social btn-small  col s1 m1 l1'><i className="devicon-twitter-plain"></i></button>
         {error && <p>{error.message}</p>}
       </form>
     )

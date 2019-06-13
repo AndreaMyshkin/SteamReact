@@ -4,6 +4,11 @@ position: relative;
 
    
 }
+.create-acount{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
 
 .btn-signUp{
 
