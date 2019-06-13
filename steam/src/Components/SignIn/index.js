@@ -16,7 +16,6 @@ this social account already exists. Try to login from
 this account instead and associate your social accounts on
 your personal account page.
 `
-
 const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
