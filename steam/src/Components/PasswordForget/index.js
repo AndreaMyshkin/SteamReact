@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../Constants/routesFirebase';
+import './password-forget.css'
+
+
 
 const PasswordForgetPage = () => (
 <div>
@@ -13,6 +16,9 @@ const INITIAL_STATE = {
 email: '',
 error: null,
 };
+
+
+
 class PasswordForgetFormBase extends Component {
 constructor(props) {
 super(props);
@@ -36,20 +42,21 @@ this.setState({ [event.target.name]: event.target.value });
 render() {
 const { email, error } = this.state;
 const isInvalid = email === '';
-return (
-<form onSubmit={this.onSubmit}>
+return (<div className="row"><div className="col l6 offset-l1"><p className="text-password-forget center">¿Deseas restablecer tu contraseña?</p></div>
+<form onSubmit={this.onSubmit}  className="row">
 <input
+className="col l6 offset-l1 input-text"
 name="email"
 value={this.state.email}
 onChange={this.onChange}
 type="text"
-placeholder="Email Address"
+placeholder="Correo electrónico"
 />
-<button disabled={isInvalid} type="submit">
-Reset My Password
-</button>
+<button disabled={isInvalid} type="submit" className="col l3 offset-l1 btn-sendEmail btn-small waves-effect waves-light">
+Enviar correo
+</button >
 {error && <p>{error.message}</p>}
-</form>
+</form></div>
 );
 }
 }

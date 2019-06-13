@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase'
+import './passwordChange.css'
 
 const INITIAL_STATE = {
 passwordOne: '',
@@ -34,27 +35,27 @@ render() {
 const { passwordOne, passwordTwo, error } = this.state;
 const isInvalid =
 passwordOne !== passwordTwo || passwordOne === '';
-return (
+return (<div className="row"><div className="col l6 offset-l1"><p className="center">¿Quieres cambiar tu contraseña? </p></div>
 <form onSubmit={this.onSubmit}>
-<input
+<input  className="col l6 offset-l1"
 name="passwordOne"
 value={passwordOne}
 onChange={this.onChange}
 type="password"
-placeholder="New Password"
+placeholder="Contraseña nueva"
 />
-<input
+<input  className="col l6 offset-l1"
 name="passwordTwo"
 value={passwordTwo}
 onChange={this.onChange}
 type="password"
-placeholder="Confirm New Password"
+placeholder="Confirmar contraseña"
 />
-<button disabled={isInvalid} type="submit" className=" btn-small col l12 blue">
+<button disabled={isInvalid} type="submit" className="col l3 offset-l1 btn-changePassword btn-small waves-effect waves-light">
 Cambiar contraseña
 </button>
 {error && <p>{error.message}</p>}
-</form>
+</form></div>
 );
 }
 }
