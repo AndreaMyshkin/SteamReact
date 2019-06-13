@@ -6,11 +6,15 @@ import { withFirebase } from '../Firebase'
 import './signUp.css'
 
 const SignUpPage = () => (
+
     <div className="row">
-        <div className="white col s10 offset-s1 l4 offset-l4 signUp-card">
-            <h4 className=" center grey-text text-darken-2">Crea tu cuenta STEAM</h4>
+    <div className="col s12 m5 l10 offset-l1">
+    <div className="col s12 m5 l4 offset-l4">
+        <div className=" card-panel signUp-card">
+            <h4 className=" center  header-singUp">Crea tu cuenta</h4>
+          
             <SignUpForm />
-        </div></div>
+        </div></div></div></div>
 )
 
 const INITIAL_STATE = {
@@ -71,7 +75,7 @@ class SignUpFormBase extends Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <div>
-                    <input
+                    <input className="input-text"
 
                         placeholder="Usuario"
                         name="username"
@@ -83,7 +87,7 @@ class SignUpFormBase extends Component {
                     />
 
                     <input
-
+                        className="input-text"
                         name="email"
                         value={email}
                         onChange={this.onChange}
@@ -91,7 +95,7 @@ class SignUpFormBase extends Component {
                         placeholder="Correo Electrónico"
                     />
                     <input
-
+                        className="input-password"
                         name="passwordOne"
                         value={passwordOne}
                         onChange={this.onChange}
@@ -99,14 +103,14 @@ class SignUpFormBase extends Component {
                         placeholder="Contraseña"
                     />
                     <input
-
+                        className="input-password"
                         name="passwordTwo"
                         value={passwordTwo}
                         onChange={this.onChange}
                         type="password"
                         placeholder="Confirmar contraseña"
                     /> </div>
-                <button disabled={isInvalid} type="submit" className="col s12 btn-small blue btn-signUp">Sign Up</button>
+               <button disabled={isInvalid} type="submit" className="col s12 btn-small waves-effect waves-light btn-signUp">Sign Up</button>
                 {error && <p>{error.message}</p>}
             </form>
         )

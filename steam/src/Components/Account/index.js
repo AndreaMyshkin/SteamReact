@@ -8,7 +8,7 @@ import {
 import { withFirebase } from '../Firebase'
 import { PasswordForgetForm } from '../PasswordForget'
 import PasswordChangeForm from '../PasswordChange'
-
+import './account.css'
 const SIGN_IN_METHODS = [
   {
     id: 'password',
@@ -31,12 +31,17 @@ const SIGN_IN_METHODS = [
 const AccountPage = () => (
   <AuthUserContext.Consumer>
     {authUser => (
-      <div>
-        <h1>Account: {authUser ? authUser.email : null}</h1>
+    
+    
+    <div className="row">
+    
+      <div className="card panel  col l10 offset-l1 white account-card ">
+        <h4 className="center"> Mi cuenta</h4> 
+        <h5 className="center email-account">{authUser ? authUser.email : null}</h5>
         <PasswordForgetForm />
         <PasswordChangeForm />
         <LoginManagement authUser={authUser} />
-      </div>
+      </div></div>
     )}
   </AuthUserContext.Consumer>
 )
