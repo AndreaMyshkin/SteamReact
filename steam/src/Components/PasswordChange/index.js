@@ -3,33 +3,33 @@ import { withFirebase } from '../Firebase'
 import './passwordChange.css'
 
 const INITIAL_STATE = {
-passwordOne: '',
-passwordTwo: '',
-error: null,
+    passwordOne: '',
+    passwordTwo: '',
+    error: null
 }
 
 class PasswordChangeForm extends Component {
-constructor(props) {
-super(props);
-this.state = { ...INITIAL_STATE };
-}
+    constructor(props) {
+        super(props)
+        this.state = { ...INITIAL_STATE }
+    }
 
-onSubmit = event => {
-const { passwordOne } = this.state;
-this.props.firebase
-.doPasswordUpdate(passwordOne)
-.then(() => {
-this.setState({ ...INITIAL_STATE });
-})
-.catch(error => {
-this.setState({ error });
-})
-event.preventDefault();
-}
+    onSubmit = event => {
+        const { passwordOne } = this.state
+        this.props.firebase
+            .doPasswordUpdate(passwordOne)
+            .then(() => {
+                this.setState({ ...INITIAL_STATE })
+            })
+            .catch(error => {
+                this.setState({ error })
+            })
+        event.preventDefault()
+    }
 
-onChange = event => {
-this.setState({ [event.target.name]: event.target.value })
-}
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value })
+    }
 
 render() {
 const { passwordOne, passwordTwo, error } = this.state;
@@ -59,4 +59,5 @@ Cambiar contraseña
 );
 }
 }
+
 export default withFirebase(PasswordChangeForm)

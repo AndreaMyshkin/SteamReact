@@ -1,7 +1,61 @@
 .signIn-card{
     position: relative;
        top:50px;
+       border-radius: 73px;
+       height: 87vh;
     
        
     }
+#log{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   height: 18vh;  
+   padding-bottom: 60px;
+}
+.welcome{
+   height: 13vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.logo-img{
+   width: 32%;
+    height: 5vh;
     
+}
+.button-social{
+      font-size: 25px;
+      color: #fff;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 50px;
+      border-radius: 50%;
+      margin: 8%;
+      margin-left: 11% !important;
+    }
+.google-button{
+   background-color: #ea4335;
+   width:  12.333333% !important;
+}
+.facebook-button{
+   background-color: #1b56a2;
+   width: 12.333333% !important;
+}
+.twitter-button{
+   background-color: #16b3e7;
+   width:  12.333333% !important;
+}
+.button-social:hover {
+      color: #fff;
+      background-color: #333333;
+    }
+ #login100-form-btn{
+   width: 100%;
+ }

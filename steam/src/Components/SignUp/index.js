@@ -118,8 +118,10 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-    <p>¿No tienes una cuenta STEAM? <Link to={ROUTES.SIGN_UP}> Únete</Link>
+    <div className='create-acount'>
+    <p > ¿No tienes una cuenta STEAM? <Link to={ROUTES.SIGN_UP}> Únete</Link>
     </p>
+    </div>
 )
 const SignUpForm = compose(
     withRouter,

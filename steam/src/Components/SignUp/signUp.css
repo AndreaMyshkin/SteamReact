@@ -4,6 +4,11 @@
    border-radius:10px !important;
 
 }
+.create-acount{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
 
 .btn-signUp{
    background-color: #1fd1f9 ;
