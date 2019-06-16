@@ -94,7 +94,7 @@ class LoginManagementBase extends Component {
       .catch(error => this.setState({ error }))
   }
 
-  render() {
+  render () {
     const { activeSignInMethods, error } = this.state
 
     return (
@@ -205,26 +205,10 @@ class DefaultLoginToggle extends Component {
         Deactivate {signInMethod.id}
       </button>
     ) : (
-        <form onSubmit={this.onSubmit}>
-          <input
-            name='passwordOne'
-            value={passwordOne}
-            onChange={this.onChange}
-            type='password'
-            placeholder='New Password'
-          />
-          <input
-            name='passwordTwo'
-            value={passwordTwo}
-            onChange={this.onChange}
-            type='password'
-            placeholder='Confirm New Password'
-          />
-
-          <button disabled={isInvalid} type='submit'>
+          <button disabled={isInvalid} className= 'social-toogle'type='submit'>
             Link {signInMethod.id}
           </button>
-        </form>
+
       )
   }
 }

@@ -35,7 +35,7 @@ const INITIAL_STATE = {
   password: '',
   error: null,
 }
-/* Login con mail */ 
+/* Login con mail */
 class SignInFormBase extends Component {
   constructor(props) {
     super(props)
@@ -54,7 +54,7 @@ class SignInFormBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -82,7 +82,7 @@ class SignInFormBase extends Component {
           type='password'
           placeholder='Password'
         />
-        <button disabled={isInvalid} type='submit' id= 'login100-form-btn' className= 'btn-small col l12'>
+        <button disabled={isInvalid} type='submit' id='login100-form-btn' className='btn-small col l12'>
           Entrar
         </button>
         {error && <p>{error.message}</p>}
@@ -91,7 +91,7 @@ class SignInFormBase extends Component {
 
   }
 }
-/* Login con Google */ 
+/* Login con Google */
 class SignInGoogleBase extends Component {
   constructor(props) {
     super(props)
@@ -117,7 +117,7 @@ class SignInGoogleBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -132,7 +132,7 @@ class SignInGoogleBase extends Component {
     )
   }
 }
-/* Login con Facebook */ 
+/* Login con Facebook */
 class SignInFacebookBase extends Component {
   constructor(props) {
     super(props)
@@ -158,7 +158,7 @@ class SignInFacebookBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -174,7 +174,7 @@ class SignInFacebookBase extends Component {
     )
   }
 }
-/* Login con Twitter */ 
+/* Login con Twitter */
 class SignInTwitterBase extends Component {
   constructor(props) {
     super(props)
@@ -184,6 +184,16 @@ class SignInTwitterBase extends Component {
     this.props.firebase
       .doSignInWithTwitter()
       .then(socialAuthUser => {
+        // Create a user in your Firebase Realtime Database too
+        return this.props.firebase
+          .user(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.additionalUserInfo.profile.name,
+            email: socialAuthUser.additionalUserInfo.profile.email,
+            roles: {}
+          })
+      })
+      .then(socialAuthUser => {
         this.setState({ error: null })
         this.props.history.push(ROUTES.HOME)
       })
@@ -192,7 +202,7 @@ class SignInTwitterBase extends Component {
       })
     event.preventDefault()
   }
-  render () {
+  render() {
     const { error } = this.state
     return (
       <form onSubmit={this.onSubmit}>
