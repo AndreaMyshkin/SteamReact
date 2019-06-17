@@ -14,13 +14,15 @@ const config = {
 }
 
 class Firebase {
-  constructor() {
+  constructor () {
     app.initializeApp(config)
-    this.auth = app.auth()
-    this.db = app.database()
-    this.googleProvider = new app.auth.GoogleAuthProvider()
-    this.facebookProvider = new app.auth.FacebookAuthProvider()
-    this.twitterProvider = new app.auth.TwitterAuthProvider()
+    this.emailAuthProvider = app.auth.EmailAuthProvider
+    this.serverValue = app.database.ServerValue
+      this.auth = app.auth()
+      this.db = app.database()
+      this.googleProvider = new app.auth.GoogleAuthProvider()
+      this.facebookProvider = new app.auth.FacebookAuthProvider()
+      this.twitterProvider = new app.auth.TwitterAuthProvider()
   }
   /* Autenticación con Firebase - email */
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -45,10 +47,10 @@ class Firebase {
   // Email Verification
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password)
-  doSendEmailVerification = () =>
+    doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
-      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
-    })
+    url: 'https://steamreact.firebaseapp.com',
+})
 
   // *** Merge Auth and DB User API *** //
   onAuthUserListener = (next, fallback) =>
@@ -79,10 +81,35 @@ class Firebase {
 // Users
   user = uid => this.db.ref(`users/${uid}`)
   users = () => this.db.ref('users')
-  // Message API
   message = uid => this.db.ref(`messages/${uid}`)
   messages = () => this.db.ref('messages')
 
+  onAuthUserListener = (next, fallback) =>
+    this.auth.onAuthStateChanged(authUser => {
+        if (authUser) {
+          this.user(authUser.uid)
+            .once('value')
+            .then(snapshot => {
+                const dbUser = snapshot.val()
+                // default empty roles
+                if (!dbUser.roles) {
+                  dbUser.roles = {}
+                }
+                // merge auth and db user
+                authUser = {
+                  uid: authUser.uid,
+                  email: authUser.email,
+                  emailVerified: authUser.emailVerified,
+                  providerData: authUser.providerData,
+                  ...dbUser,
+                }
+                next(authUser)
+                })
+                }
+                else {
+                  fallback()
+                }
+                })
 }
 
 export default Firebase

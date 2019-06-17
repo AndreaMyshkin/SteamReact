@@ -1,79 +1,79 @@
 .signIn-card{
-    position: relative;
-       top:50px;
-       border-radius: 25px;
-       height: 87vh;
-    
-       
-    }
+   position: relative;
+      top:10px;
+      border-radius: 10px;
+      height: 87vh;
+   
+      
+   }
 #log{
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   height: 18vh;  
-   padding-bottom: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 13vh;  
+  padding-bottom: 60px;
 }
 .welcome{
-   height: 13vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  height: 13vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .logo-img{
-   width: 32%;
-    height: 5vh;
-    
+  width: 32%;
+   height: 5vh;
+   
 }
 .button-social{
-      font-size: 25px;
-      color: #fff;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 50px;
-      border-radius: 50%;
-      margin: 8%;
-      margin-left: 11% !important;
-    }
+     font-size: 25px;
+     color: #fff;
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 40px;
+     height: 50px;
+     border-radius: 50%;
+     margin: 8%;
+     margin-left: 11% !important;
+   }
 .google-button{
-   background-color: #ea4335;
-   width:  12.333333% !important;
+  background-color: #ea4335;
+  width:  12.333333% !important;
 }
 .facebook-button{
-   background-color: #1b56a2;
-   width: 12.333333% !important;
+  background-color: #1b56a2;
+  width: 12.333333% !important;
 }
 .twitter-button{
-   background-color: #16b3e7;
-   width:  12.333333% !important;
+  background-color: #16b3e7;
+  width:  12.333333% !important;
 }
 .button-social:hover {
-      color: #fff;
-      background-color: #333333;
-    }
- #login100-form-btn{
-   width: 100%;
-   color: white;
-   font-weight: bold;
-   border-radius:25px;
-   background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%) ;
- }
- #login100-form-btn:hover{
-   color:blueviolet;
+     color: #fff;
+     background-color: #333333;
+   }
+#login100-form-btn{
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  border-radius:25px;
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%) ;
+}
+#login100-form-btn:hover{
+  color:blueviolet;
 
 }
 .input-text{
-   height: 4rem!important;
-   font-family:'Poppins:600', sans-serif  !important;
-   font-size:14px !important;
+  height: 4rem!important;
+  font-family:'Poppins:600', sans-serif  !important;
+  font-size:14px !important;
 }
 
 .input-text:focus {
-   border-bottom: 2px solid blueviolet!important ;
-   
- }
+  border-bottom: 2px solid blueviolet!important ;
+  
+}

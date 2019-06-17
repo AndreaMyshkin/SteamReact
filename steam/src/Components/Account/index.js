@@ -56,8 +56,8 @@ class LoginManagementBase extends Component {
   }
 
   componentDidMount() {
-    this.fetchSignInMethods()
-  }
+    this.fetchSignInMethods();
+    }
 
   fetchSignInMethods = () => {
     this.props.firebase.auth
