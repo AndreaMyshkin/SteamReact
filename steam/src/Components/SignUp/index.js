@@ -2,9 +2,19 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import * as ROUTES from '../../Constants/routesFirebase'
+import * as ROLES from '../../Constants/roles';
 import { withFirebase } from '../Firebase'
 import './signUp.css'
+const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
+const ERROR_MSG_ACCOUNT_EXISTS = `
+An account with this E-Mail address already exists.
+Try to login with this account instead. If you think the
+account is already used from one of the social logins, try
+to sign-in with one of them. Afterward, associate your accounts
+on your personal account page.
+`;
 
+    
 const SignUpPage = () => (
 
     <div className='row'>
@@ -34,7 +44,11 @@ class SignUpFormBase extends Component {
     }
 
     onSubmit = event => {
-        const { username, email, passwordOne } = this.state
+        const { username, email, passwordOne, isAdmin } = this.state
+        const roles = {};
+if (isAdmin) {
+roles[ROLES.ADMIN] = ROLES.ADMIN;
+}
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
@@ -43,17 +57,28 @@ class SignUpFormBase extends Component {
                 .set({
                 username,
                 email,
+                roles,
                 });
                 })
-            .then((authUser) => {
+                .then(() => {
+                    return this.props.firebase.doSendEmailVerification();
+                    })
+            .then(() => {
                 this.setState({ ...INITIAL_STATE })
                 this.props.history.push(ROUTES.FORUM)
             })
             .catch(error => {
-                this.setState({ error })
-            })
+                if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
+                error.message = ERROR_MSG_ACCOUNT_EXISTS;
+                }
+                this.setState({ error });
+                });
         event.preventDefault()
     }
+    
+    onChangeCheckbox = event => {
+        this.setState({ [event.target.name]: event.target.checked });
+        }
 
     render() {
         const {
@@ -61,6 +86,7 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
+            isAdmin,
             error,
         } = this.state
 
@@ -71,8 +97,9 @@ class SignUpFormBase extends Component {
             username === ''
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <div>
+            <form onSubmit={this.onSubmit} action="#">
+                <div> 
+                
                     <input className='input-text'
 
                         placeholder='Usuario'
@@ -107,7 +134,19 @@ class SignUpFormBase extends Component {
                         onChange={this.onChange}
                         type='password'
                         placeholder='Confirmar contraseña'
-                    /> </div>
+                    /> 
+                    
+                    <p>
+      <label>
+     
+        <input type='checkbox' 
+        name='isAdmin'
+        checked={isAdmin}
+        onChange={this.onChangeCheckbox}/>
+        <span> Admin </span>
+      </label>
+    </p>
+    </div>
                <button disabled={isInvalid} type='submit' className='col s12 btn-small waves-effect waves-light btn-signUp'>Sign Up</button>
                 {error && <p>{error.message}</p>}
             </form>
