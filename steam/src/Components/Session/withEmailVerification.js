@@ -23,7 +23,7 @@ const withEmailVerification = Component => {
         .then(() => this.setState({ isSent: true }))
     }
 
-    render () {
+    render() {
       return (
         <AuthUserContext.Consumer>
           {authUser =>

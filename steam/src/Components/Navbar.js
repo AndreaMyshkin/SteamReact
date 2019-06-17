@@ -3,7 +3,6 @@ import React from 'react'
 import SignOutButton from './SignOut'
 import * as ROUTES from '../Constants/routesFirebase'
 import { AuthUserContext } from './Session'
-import * as ROLES from '../Constants/Roles'
 
 const Navigation = () => (
   <AuthUserContext.Consumer>
