@@ -3,18 +3,23 @@ import React from 'react'
 import SignOutButton from './SignOut'
 import * as ROUTES from '../Constants/routesFirebase'
 import { AuthUserContext } from './Session'
+import * as ROLES from '../Constants/roles'
 
 const Navigation = () => (
   <div>
     <AuthUserContext.Consumer>
       {authUser =>
-        authUser ? <NavigationAuth /> : <NavigationNonAuth />
+        authUser ? (
+          <NavigationAuth authUser={authUser} />
+        ) : (
+          <NavigationNonAuth />
+        )
       }
     </AuthUserContext.Consumer>
   </div>
 )
 
-const NavigationAuth = () => (
+const NavigationAuth = ({ authUser }) => (
   <nav>
     <div className='nav-wrapper black'>
       <ul className='right hide-on-med-and-down'>
@@ -23,7 +28,11 @@ const NavigationAuth = () => (
         <li> <Link to={ROUTES.HOME}>Home</Link></li>
         <li><Link to={ROUTES.MYPROFILE}>Mi Perfil</Link></li>
         <li><Link to={ROUTES.ACCOUNT}>Account</Link></li>
-        <li><Link to={ROUTES.ADMIN}>Admin</Link></li>
+        {!!authUser.roles[ROLES.ADMIN] && (
+          <li>
+            <Link to={ROUTES.ADMIN}>Admin</Link>
+          </li>
+        )}
         <li><SignOutButton /></li>
       </ul>
     </div>
