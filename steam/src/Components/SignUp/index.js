@@ -4,6 +4,7 @@ import { compose } from 'recompose'
 import * as ROUTES from '../../Constants/routesFirebase'
 import * as ROLES from '../../Constants/roles';
 import { withFirebase } from '../Firebase'
+import { SignInLink } from '../SignIn'
 import './signUp.css'
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
 const ERROR_MSG_ACCOUNT_EXISTS = `
@@ -21,8 +22,9 @@ const SignUpPage = () => (
     <div className='col s12 m5 l10 offset-l1'>
     <div className='col s12 m5 l4 offset-l4'>
         <div className=' card-panel signUp-card'>
-            <h4 className=' center  header-singUp'>Crea tu cuenta</h4>
+            <h4 className=' center  header-singUp'>Sign Up</h4>
             <SignUpForm />
+            <SignInLink/>
         </div></div></div></div>
 )
 
@@ -65,7 +67,7 @@ roles[ROLES.ADMIN] = ROLES.ADMIN;
                     })
             .then(() => {
                 this.setState({ ...INITIAL_STATE })
-                this.props.history.push(ROUTES.FORUM)
+                this.props.history.push(ROUTES.HOME)
             })
             .catch(error => {
                 if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -86,7 +88,6 @@ roles[ROLES.ADMIN] = ROLES.ADMIN;
             email,
             passwordOne,
             passwordTwo,
-            isAdmin,
             error,
         } = this.state
 
@@ -101,23 +102,20 @@ roles[ROLES.ADMIN] = ROLES.ADMIN;
                 <div> 
                 
                     <input className='input-text'
-
-                        placeholder='Usuario'
+                        placeholder='Username'
                         name='username'
                         value={username}
                         onChange={this.onChange}
                         type='text'
 
-
                     />
-
                     <input
                         className='input-text'
                         name='email'
                         value={email}
                         onChange={this.onChange}
                         type='text'
-                        placeholder='Correo Electrónico'
+                        placeholder='Email'
                     />
                     <input
                         className='input-password'
@@ -125,7 +123,7 @@ roles[ROLES.ADMIN] = ROLES.ADMIN;
                         value={passwordOne}
                         onChange={this.onChange}
                         type='password'
-                        placeholder='Contraseña'
+                        placeholder='Password'
                     />
                     <input
                         className='input-password'
@@ -133,18 +131,18 @@ roles[ROLES.ADMIN] = ROLES.ADMIN;
                         value={passwordTwo}
                         onChange={this.onChange}
                         type='password'
-                        placeholder='Confirmar contraseña'
+                        placeholder='Confirm password'
                     /> 
                     
                     <p>
-      <label>
+      {/* <label>
      
         <input type='checkbox' 
         name='isAdmin'
         checked={isAdmin}
         onChange={this.onChangeCheckbox}/>
         <span> Admin </span>
-      </label>
+      </label> */}
     </p>
     </div>
                <button disabled={isInvalid} type='submit' className='col s12 btn-small waves-effect waves-light btn-signUp'>Sign Up</button>
@@ -156,7 +154,7 @@ roles[ROLES.ADMIN] = ROLES.ADMIN;
 
 const SignUpLink = () => (
     <div className='create-acount'>
-    <p > ¿No tienes una cuenta STEAM? <Link to={ROUTES.SIGN_UP}> Únete</Link>
+    <p > Don't have an account yet ?  <Link to={ROUTES.SIGN_UP}> Sign up</Link>
     </p>
     </div>
 )

@@ -21,7 +21,7 @@ class MessagesBase extends React.Component {
       text: '',
       loading: false,
       messages: [], 
-      limit: 5
+      limit: 10
     }
   }
   onChangeText = event => {
@@ -178,7 +178,7 @@ onChange={this.onChangeEditText}
 />
 ) : (
   <div>
-  <div> <img src = {message.userPhoto} className="center photo-post"></img></div>
+  <div> <img src = {message.userPhoto} className="center photo-post"  alt=""></img></div>
   <div>
   <span>
   <strong>{message.nameUser}</strong>

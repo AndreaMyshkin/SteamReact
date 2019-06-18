@@ -23,11 +23,9 @@ const NavigationAuth = ({ authUser }) => (
   <nav>
     <div className='nav-wrapper black'>
       <ul className='right hide-on-med-and-down'>
-        <li><Link to={ROUTES.COMUNITY}>Comunidad Steam</Link></li>
-        <li> <Link to={ROUTES.FORUM}>Foro</Link></li>
+        <li><Link to={ROUTES.COMUNITY}>Steam Community</Link></li>
         <li> <Link to={ROUTES.HOME}>Home</Link></li>
-        <li><Link to={ROUTES.MYPROFILE}>Mi Perfil</Link></li>
-        <li><Link to={ROUTES.ACCOUNT}>Account</Link></li>
+        <li><Link to={ROUTES.ACCOUNT}>My Account</Link></li>
         {!!authUser.roles[ROLES.ADMIN] && (
           <li>
             <Link to={ROUTES.ADMIN}>Admin</Link>

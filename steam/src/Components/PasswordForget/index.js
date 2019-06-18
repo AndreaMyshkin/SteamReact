@@ -45,7 +45,7 @@ class PasswordForgetFormBase extends Component {
         return (<div className='row'><div className=' text-password-forget col l6 offset-l1'></div>
             <form onSubmit={this.onSubmit} className='row'>
                 <input
-                    className='col l6 offset-l1 input-text'
+                    className='col l6 offset-l1 input-text-password'
                     name='email'
                     value={this.state.email}
                     onChange={this.onChange}
@@ -64,7 +64,7 @@ class PasswordForgetFormBase extends Component {
 const PasswordForgetLink = () => (
     <div id='pass-forget'>
       <p>
-        <Link to={ROUTES.PASSWORD_FORGET}>¿Olvidaste tu contraseña?</Link>
+        <Link to={ROUTES.PASSWORD_FORGET}>Forgot password?</Link>
       </p>
     </div>
 )
