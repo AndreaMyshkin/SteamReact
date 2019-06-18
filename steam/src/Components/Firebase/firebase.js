@@ -101,6 +101,7 @@ class Firebase {
                   email: authUser.email,
                   emailVerified: authUser.emailVerified,
                   providerData: authUser.providerData,
+                  photoURL: authUser.photoURL, 
                   ...dbUser,
                 }
                 next(authUser)

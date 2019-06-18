@@ -4,8 +4,9 @@ import { withFirebase } from '../../Components/Firebase'
 import {
   AuthUserContext,
   withAuthorization,
-} from '../../Components/Session'
-
+  withEmailVerification,
+  } from '../../Components/Session'
+import './home.css'
 const HomePage = () => (
   <div>
     <h1>Home Page</h1>
@@ -30,14 +31,14 @@ class MessagesBase extends React.Component {
   onCreateMessage = (event, authUser) => {
     this.props.firebase.messages().push({
       text: this.state.text,
-      userName :authUser.username,
+      userPhoto: authUser.photoURL,
       userId: authUser.uid,
-      createdAt: this.props.firebase.serverValue.TIMESTAMP
+      nameUser: authUser.username,
+      createdAt: this.props.firebase.serverValue.TIMESTAMP,
     })
     this.setState({ text: '' })
     event.preventDefault()
   }
-
 
   onRemoveMessage = uid => {
     this.props.firebase.message(uid).remove()
@@ -52,7 +53,7 @@ class MessagesBase extends React.Component {
   }
 
   componentDidMount () {
-    this.onListenForMessages ()
+    this.onListenForMessages()
   }
 
   onListenForMessages () {
@@ -92,6 +93,8 @@ class MessagesBase extends React.Component {
 
   render () {
     const { text, messages, loading } = this.state
+    const isInvalid = text === ''
+
     return (
       <AuthUserContext.Consumer>
         {authUser => (
@@ -116,7 +119,7 @@ class MessagesBase extends React.Component {
                 value={text}
                 onChange={this.onChangeText}
               />
-              <button type='submit' disabled={!isEnabled} >Send</ button>
+              <button disabled={isInvalid} type='submit'  >Send</ button>
             </form>
           </div>
         )}
@@ -168,7 +171,7 @@ class MessageItem extends React.Component {
     }))
   }
 
-  render () {
+  render() {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
@@ -180,12 +183,20 @@ class MessageItem extends React.Component {
             onChange={this.onChangeEditText}
           />
         ) : (
-            <span>
-           <strong>{message.userName}</strong> {message.text}
-              {message.editedAt && <span>(Edited)</span>}
-            </span>
+            <div className='container'>
+              <div className='card'>
+              <div className=''>
+                <img src={message.userPhoto} className='center photo-post'></img></div>
+              <div>
+                <span>
+                  <strong>{message.nameUser}</strong>
+                  <span>{message.text}</span>
+                  {message.editedAt && <span>(Edited)</span>}
+                </span>
+              </div>
+            </div>
+            </div>
           )}
-
 
         {authUser.uid === message.userId && (
           <span>
@@ -215,5 +226,6 @@ class MessageItem extends React.Component {
 const Messages = withFirebase(MessagesBase)
 const condition = authUser => !!authUser
 export default compose(
+  withEmailVerification,
   withAuthorization(condition)
 )(HomePage)

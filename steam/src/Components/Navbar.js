@@ -21,7 +21,7 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <nav>
-    <div className='nav-wrapper black'>
+    <div className='nav-wrapper  nav-mobile black'>
       <ul className='right hide-on-med-and-down'>
         <li><Link to={ROUTES.COMUNITY}>Comunidad Steam</Link></li>
         <li> <Link to={ROUTES.FORUM}>Foro</Link></li>
