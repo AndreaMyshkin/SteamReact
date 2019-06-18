@@ -73,6 +73,7 @@ messages = () => this.db.ref('messages');
                   email: authUser.email,
                   emailVerified: authUser.emailVerified,
                   providerData: authUser.providerData,
+                  photoURL: authUser.photoURL, 
                   ...dbUser,
                 };
                 next(authUser);

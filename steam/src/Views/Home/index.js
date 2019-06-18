@@ -4,8 +4,9 @@ import { withFirebase } from '../../Components/Firebase'
 import {
   AuthUserContext,
   withAuthorization,
+  withEmailVerification,
   } from '../../Components/Session';
-
+import './home.css'
 const HomePage = () => (
   <div>
     <h1>Home Page</h1>
@@ -29,7 +30,9 @@ class MessagesBase extends React.Component {
     onCreateMessage = (event, authUser) => {
       this.props.firebase.messages().push({
       text: this.state.text,
+      userPhoto: authUser.photoURL,
       userId: authUser.uid,
+      nameUser : authUser.username,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
       });
     this.setState({ text: '' });
@@ -174,10 +177,17 @@ value={editText}
 onChange={this.onChangeEditText}
 />
 ) : (
+  <div>
+  <div> <img src = {message.userPhoto} className="center photo-post"></img></div>
+  <div>
   <span>
-  <strong>{message.userId}</strong> {message.text}
+  <strong>{message.nameUser}</strong>
+  <span>{message.text}</span>
+  
   {message.editedAt && <span>(Edited)</span>}
-  </span>
+ 
+  </span></div>
+  </div> 
   )}
   
   
@@ -211,5 +221,6 @@ onChange={this.onChangeEditText}
 const Messages = withFirebase(MessagesBase)
 const condition = authUser => !!authUser
 export default compose(
+withEmailVerification,
   withAuthorization(condition)
 )(HomePage)
