@@ -182,7 +182,7 @@ class DefaultLoginToggle extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render() {
+  render () {
     const {
       onlyOneLeft,
       isEnabled,

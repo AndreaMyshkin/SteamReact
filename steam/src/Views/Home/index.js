@@ -38,6 +38,7 @@ class MessagesBase extends React.Component {
     event.preventDefault()
   }
 
+
   onRemoveMessage = uid => {
     this.props.firebase.message(uid).remove()
   }
@@ -51,7 +52,7 @@ class MessagesBase extends React.Component {
   }
 
   componentDidMount () {
-    this.onListenForMessages()
+    this.onListenForMessages ()
   }
 
   onListenForMessages () {
@@ -96,7 +97,7 @@ class MessagesBase extends React.Component {
         {authUser => (
           <div>
             {!loading && messages && (
-              <button type="button" onClick={this.onNextPage}>
+              <button type='button' onClick={this.onNextPage}>
                 More
            </button>
             )}
@@ -111,11 +112,11 @@ class MessagesBase extends React.Component {
               )}
             <form onSubmit={event => this.onCreateMessage(event, authUser)}>
               <input
-                type="text"
+                type='text'
                 value={text}
                 onChange={this.onChangeText}
               />
-              <button type="submit">Send</button>
+              <button type='submit' disabled={!isEnabled} >Send</ button>
             </form>
           </div>
         )}
@@ -159,12 +160,14 @@ class MessageItem extends React.Component {
     this.props.onEditMessage(this.props.message, this.state.editText)
     this.setState({ editMode: false })
   }
+
   onToggleEditMode = () => {
     this.setState(state => ({
       editMode: !state.editMode,
       editText: this.props.message.text,
     }))
   }
+
   render () {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
@@ -172,7 +175,7 @@ class MessageItem extends React.Component {
       <li>
         {editMode ? (
           <input
-            type="text"
+            type='text'
             value={editText}
             onChange={this.onChangeEditText}
           />
@@ -196,7 +199,7 @@ class MessageItem extends React.Component {
               )}
             {!editMode && (
               <button
-                type="button"
+                type='button'
                 onClick={() => onRemoveMessage(message.uid)}
               >
                 Delete
