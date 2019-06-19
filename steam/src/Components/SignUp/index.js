@@ -4,6 +4,7 @@ import { compose } from 'recompose'
 import * as ROUTES from '../../Constants/routesFirebase'
 import * as ROLES from '../../Constants/roles'
 import { withFirebase } from '../Firebase'
+import { SignInLink } from '../SignIn'
 import './signUp.css'
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use'
@@ -18,15 +19,13 @@ on your personal account page.
 const SignUpPage = () => (
 
     <div className='row'>
-        <div className='col s12 m5 l10 offset-l1'>
-            <div className='col s12 m5 l4 offset-l4'>
-                <div className=' card-panel signUp-card'>
-                    <h4 className=' center  header-singUp'>Crea tu cuenta</h4>
-                    <SignUpForm />
-                </div>
-            </div>
-        </div>
-    </div>
+    <div className='col s12 m5 l10 offset-l1'>
+    <div className='col s12 m5 l4 offset-l4'>
+        <div className=' card-panel signUp-card'>
+            <h4 className=' center  header-singUp'>Sign Up</h4>
+            <SignUpForm />
+            <SignInLink/>
+        </div></div></div></div>
 )
 
 const INITIAL_STATE = {
@@ -70,7 +69,7 @@ class SignUpFormBase extends Component {
             })
             .then(() => {
                 this.setState({ ...INITIAL_STATE })
-                this.props.history.push(ROUTES.FORUM)
+                this.props.history.push(ROUTES.HOME)
             })
             .catch(error => {
                 if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -95,7 +94,6 @@ class SignUpFormBase extends Component {
             email,
             passwordOne,
             passwordTwo,
-            isAdmin,
             error,
         } = this.state
 
@@ -109,23 +107,20 @@ class SignUpFormBase extends Component {
             <form onSubmit={this.onSubmit} action="#">
                 <div>
                     <input className='input-text'
-
-                        placeholder='Usuario'
+                        placeholder='Username'
                         name='username'
                         value={username}
                         onChange={this.onChange}
                         type='text'
 
-
                     />
-
                     <input
                         className='input-text'
                         name='email'
                         value={email}
                         onChange={this.onChange}
                         type='text'
-                        placeholder='Correo Electrónico'
+                        placeholder='Email'
                     />
                     <input
                         className='input-password'
@@ -133,7 +128,7 @@ class SignUpFormBase extends Component {
                         value={passwordOne}
                         onChange={this.onChange}
                         type='password'
-                        placeholder='Contraseña'
+                        placeholder='Password'
                     />
                     <input
                         className='input-password'
@@ -141,19 +136,21 @@ class SignUpFormBase extends Component {
                         value={passwordTwo}
                         onChange={this.onChange}
                         type='password'
-                        placeholder='Confirmar contraseña'
-                    />
+                        placeholder='Confirm password'
+                    /> 
+                    
                     <p>
-                        <label>
-                            <input type='checkbox'
-                                name='isAdmin'
-                                checked={isAdmin}
-                                onChange={this.onChangeCheckbox} />
-                            <span> Admin </span>
-                        </label>
-                    </p>
-                </div>
-                <button disabled={isInvalid} type='submit' className='col s12 btn-small waves-effect waves-light btn-signUp'>Sign Up</button>
+      {/* <label>
+     
+        <input type='checkbox' 
+        name='isAdmin'
+        checked={isAdmin}
+        onChange={this.onChangeCheckbox}/>
+        <span> Admin </span>
+      </label> */}
+    </p>
+    </div>
+               <button disabled={isInvalid} type='submit' className='col s12 btn-small waves-effect waves-light btn-signUp'>Sign Up</button>
                 {error && <p>{error.message}</p>}
             </form>
         )
@@ -162,8 +159,8 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
     <div className='create-acount'>
-        <p > ¿No tienes una cuenta STEAM? <Link to={ROUTES.SIGN_UP}> Únete</Link>
-        </p>
+    <p > Don't have an account yet ?  <Link to={ROUTES.SIGN_UP}> Sign up</Link>
+    </p>
     </div>
 )
 const SignUpForm = compose(
