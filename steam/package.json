@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cloudinary-react": "^1.1.1",
     "firebase": "^6.1.1",
     "firebase-tools": "^6.11.0",
     "history": "^4.9.0",

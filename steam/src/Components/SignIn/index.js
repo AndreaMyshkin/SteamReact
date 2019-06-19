@@ -5,11 +5,10 @@ import { SignUpLink } from '../SignUp'
 import { withFirebase } from '../Firebase'
 import { PasswordForgetLink } from '../PasswordForget'
 import * as ROUTES from '../../Constants/routesFirebase'
-// import LOGO from '../SignIn/LogoLogin'
 import './signIn.css'
 
 const ERROR_CODE_ACCOUNT_EXISTS =
-  'auth/account-exists-with-different-credential'
+'auth/account-exists-with-different-credential'
 const ERROR_MSG_ACCOUNT_EXISTS = `
 An account with an E-Mail address to
 this social account already exists. Try to login from
@@ -20,23 +19,27 @@ const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
       <h4 className='center welcome grey-text text-darken-3'>Welcome to </h4>
-      <h3 className="logo-steam center">STEAM</h3>
-
+      <h3 className='logo-steam center'>STEAM</h3>
       <SignInForm />
-      <div className="col l12 s12"> <div id="social-signIn-buttons"> <SignInGoogle /> <SignInFacebook /> <SignInTwitter /></div></div>
-      <div className="password-sign col s12 center">
+      <div className='col l12 s12'>
+      <div id='social-signIn-buttons'>
+          <SignInGoogle /> <SignInFacebook /> <SignInTwitter />
+      </div>
+      </div>
+      <div className='password-sign col s12 center'>
       <PasswordForgetLink />
       <SignUpLink /></div>
-      
       </div>
   </div>
 )
+
 const SignInLink = () => (
   <div className='already-acount'>
   <p > Already have an account?  <Link to={ROUTES.SIGN_IN}> Sign in</Link>
   </p>
   </div>
 )
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -70,7 +73,7 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render() {
+  render () {
     const { email, password, error } = this.state
     const isInvalid = password === '' || email === ''
     return (
@@ -106,6 +109,7 @@ class SignInGoogleBase extends Component {
     super(props)
     this.state = { error: null }
   }
+
   clickGoogle = event => {
     this.props.firebase
       .doSignInWithGoogle()
@@ -131,14 +135,14 @@ class SignInGoogleBase extends Component {
       })
     event.preventDefault()
   }
-  render() {
+
+  render () {
     const { error } = this.state
     return (
       <div>
-       <a  id="auth-google"   onClick={this.clickGoogle} class="btn-floating btn-large waves-effect waves-light red"><i className="devicon-google-plain"></i></a>
+       <a  id='auth-google' onClick={this.clickGoogle} class='btn-floating btn-large waves-effect waves-light red'><i className='devicon-google-plain'></i></a>
         {error && <p>{error.message}</p>}
       </div>
-  
     )
   }
 }
@@ -148,6 +152,7 @@ class SignInFacebookBase extends Component {
     super(props)
     this.state = { error: null }
   }
+
   clickFacebook= event => {
     this.props.firebase
       .doSignInWithFacebook()
@@ -174,14 +179,13 @@ class SignInFacebookBase extends Component {
     event.preventDefault()
   }
 
-  render() {
+  render () {
     const { error } = this.state
     return (
       <div>
-      <a  id='auth-facebook'   onClick={this.clickFacebook} class="btn-floating btn-large waves-effect waves-light  light-blue darken-4"><i className="devicon-facebook-plain"></i></a>
+      <a  id='auth-facebook'   onClick={this.clickFacebook} class='btn-floating btn-large waves-effect waves-light  light-blue darken-4'><i className='devicon-facebook-plain'></i></a>
        {error && <p>{error.message}</p>}
      </div>
-     
     )
   }
 }
@@ -191,6 +195,7 @@ class SignInTwitterBase extends Component {
     super(props)
     this.state = { error: null }
   }
+
   clickTwitter = event => {
     this.props.firebase
       .doSignInWithTwitter()
@@ -213,14 +218,14 @@ class SignInTwitterBase extends Component {
       })
     event.preventDefault()
   }
-  render() {
+
+  render () {
     const { error } = this.state
     return (
       <div>
-      <a  onClick={this.clickTwitter} class="btn-floating btn-large waves-effect waves-light  light-blue darken-1"><i className="devicon-twitter-plain"></i></a>
+      <a  onClick={this.clickTwitter} class='btn-floating btn-large waves-effect waves-light  light-blue darken-1'><i className='devicon-twitter-plain'></i></a>
        {error && <p>{error.message}</p>}
      </div>
-    
     )
   }
 }

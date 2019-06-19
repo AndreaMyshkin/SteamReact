@@ -5,7 +5,7 @@ import {
   AuthUserContext,
   withAuthorization,
   withEmailVerification,
-  } from '../../Components/Session'
+} from '../../Components/Session'
 import './home.css'
 
 const HomePage = () => (
@@ -14,6 +14,7 @@ const HomePage = () => (
     <Messages />
   </div>
 )
+
 class MessagesBase extends React.Component {
   constructor(props) {
     super(props)
@@ -52,11 +53,11 @@ class MessagesBase extends React.Component {
     })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.onListenForMessages()
   }
 
-  onListenForMessages () {
+  onListenForMessages() {
     this.setState({ loading: true })
     this.props.firebase.messages()
       .orderByChild('createdAt')
@@ -80,7 +81,7 @@ class MessagesBase extends React.Component {
       })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.props.firebase.messages().off()
   }
 
@@ -91,7 +92,7 @@ class MessagesBase extends React.Component {
     )
   }
 
-  render () {
+  render() {
     const { text, messages, loading } = this.state
     const isInvalid = text === ''
 
@@ -100,9 +101,14 @@ class MessagesBase extends React.Component {
         {authUser => (
           <div>
             {!loading && messages && (
-              <button type='button' onClick={this.onNextPage}>
-                More
-           </button>
+              <form className='container input-text' onSubmit={event => this.onCreateMessage(event, authUser)}>
+                <input
+                  type='text'
+                  value={text}
+                  onChange={this.onChangeText}
+                />
+                <button disabled={isInvalid} type='submit'><i class="material-icons">near_me</i> Send</ button>
+              </form>
             )}
             {messages ? (
               <MessageList
@@ -113,14 +119,10 @@ class MessagesBase extends React.Component {
             ) : (
                 <div>There are no messages ...</div>
               )}
-            <form className='container input-text' onSubmit={event => this.onCreateMessage(event, authUser)}>
-              <input
-                type='text'
-                value={text}
-                onChange={this.onChangeText}
-              />
-              <button disabled={isInvalid} type='submit'><i class="material-icons">near_me</i> Send</ button>
-            </form>
+
+            <button type='button' onClick={this.onNextPage}>
+              More
+           </button>
           </div>
         )}
       </AuthUserContext.Consumer>
@@ -171,7 +173,7 @@ class MessageItem extends React.Component {
     }))
   }
 
-  render () {
+  render() {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
@@ -194,29 +196,29 @@ class MessageItem extends React.Component {
                 <div className='text-container'>
                   {message.text}
                 </div>
-                  {message.editedAt && <span>(Edited)</span>}
-            </div>
+                {message.editedAt && <span>(Edited)</span>}
+              </div>
             </div>
           )}
 
         {authUser.uid === message.userId && (
           <div className='container buttons-edit'>
-          <span>
-            {editMode ? (
-              <span>
-                <button onClick={this.onSaveEditText}>Save</button>
-                <button onClick={this.onToggleEditMode}>Reset</button>
-              </span>
-            ) : (
-                <button onClick={this.onToggleEditMode}><i class="material-icons">create</i></button>
+            <span>
+              {editMode ? (
+                <span>
+                  <button onClick={this.onSaveEditText}>Save</button>
+                  <button onClick={this.onToggleEditMode}>Reset</button>
+                </span>
+              ) : (
+                  <button onClick={this.onToggleEditMode}><i class="material-icons">create</i></button>
+                )}
+              {!editMode && (
+                <button
+                  type='button'
+                  onClick={() => onRemoveMessage(message.uid)}
+                > <i class="material-icons">delete</i> </button>
               )}
-            {!editMode && (
-              <button
-                type='button'
-                onClick={() => onRemoveMessage(message.uid)}
-              > <i class="material-icons">delete</i> </button>
-            )}
-          </span>
+            </span>
           </div>
         )}
       </li>
