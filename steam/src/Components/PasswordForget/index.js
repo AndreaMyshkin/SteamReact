@@ -45,15 +45,15 @@ class PasswordForgetFormBase extends Component {
         return (<div className='row'><div className=' text-password-forget col l6 offset-l1'></div>
             <form onSubmit={this.onSubmit} className='row'>
                 <input
-                    className='col l6 offset-l1 input-text-password'
+                    className='col l6 offset-l1 input-text'
                     name='email'
                     value={this.state.email}
                     onChange={this.onChange}
                     type='text'
-                    placeholder='Correo electrónico'
+                    placeholder='email'
                 />
                 <button disabled={isInvalid} type='submit' className='col l3 offset-l1 btn-sendEmail btn-small waves-effect waves-light'>
-                    Enviar correo
+                    Send Email
                 </button >
                 {error && <p>{error.message}</p>}
             </form></div>
@@ -64,7 +64,7 @@ class PasswordForgetFormBase extends Component {
 const PasswordForgetLink = () => (
     <div id='pass-forget'>
       <p>
-        <Link to={ROUTES.PASSWORD_FORGET}>Forgot password?</Link>
+        <Link to={ROUTES.PASSWORD_FORGET}>¿Olvidaste tu contraseña?</Link>
       </p>
     </div>
 )

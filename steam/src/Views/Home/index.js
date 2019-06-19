@@ -7,10 +7,8 @@ import {
   withEmailVerification,
 } from '../../Components/Session'
 import './home.css'
-
 const HomePage = () => (
   <div>
-    <h1>Home</h1>
     <Messages />
   </div>
 )
@@ -119,7 +117,6 @@ class MessagesBase extends React.Component {
             ) : (
                 <div>There are no messages ...</div>
               )}
-
             <button type='button' onClick={this.onNextPage}>
               More
            </button>
@@ -177,7 +174,7 @@ class MessageItem extends React.Component {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
-      <li >
+      <li>
         {editMode ? (
           <input
             type='text'
@@ -187,39 +184,36 @@ class MessageItem extends React.Component {
         ) : (
             <div className='container'>
               <div className='card'>
-                <div className='img-user'>
-                  <img src={message.userPhoto} className='center photo-post' ></img>
-                </div>
-                <div className='name-container'>
+              <div className=''>
+                <img src={message.userPhoto} className='center photo-post'></img></div>
+              <div>
+                <span>
                   <strong>{message.nameUser}</strong>
-                </div>
-                <div className='text-container'>
-                  {message.text}
-                </div>
-                {message.editedAt && <span>(Edited)</span>}
+                  <span>    {message.text}</span>
+                  {message.editedAt && <span>(Edited)</span>}
+                </span>
               </div>
+            </div>
             </div>
           )}
 
         {authUser.uid === message.userId && (
-          <div className='container buttons-edit'>
-            <span>
-              {editMode ? (
-                <span>
-                  <button onClick={this.onSaveEditText}>Save</button>
-                  <button onClick={this.onToggleEditMode}>Reset</button>
-                </span>
-              ) : (
-                  <button onClick={this.onToggleEditMode}><i class="material-icons">create</i></button>
-                )}
-              {!editMode && (
-                <button
-                  type='button'
-                  onClick={() => onRemoveMessage(message.uid)}
-                > <i class="material-icons">delete</i> </button>
+          <span>
+            {editMode ? (
+              <span>
+                <button onClick={this.onSaveEditText}>Save</button>
+                <button onClick={this.onToggleEditMode}>Reset</button>
+              </span>
+            ) : (
+                <button onClick={this.onToggleEditMode}> <i class="material-icons">create</i></button>
               )}
-            </span>
-          </div>
+            {!editMode && (
+              <button
+                type='button'
+                onClick={() => onRemoveMessage(message.uid)}
+              > <i class="material-icons">delete</i></button>
+            )}
+          </span>
         )}
       </li>
     )
