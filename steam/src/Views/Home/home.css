@@ -1,5 +1,37 @@
-.photo-post{
-width: 48px;
-height: 48px;
-border-radius:50%;
+.photo-post {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 2%;
+}
+
+.buttons-edit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card{
+    display: flex;
+ }
+
+.img-user {
+    display: flex;
+    width: 12%;
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.name-container {
+    display: block;
+    margin-top: 1%;
+    height: 35%;
+}
+
+.text-container {
+    display: inline-block;
+    height: 31%;
+    width: 73%;
+    margin-top: 4%;
+    margin-left: -8%;
 }

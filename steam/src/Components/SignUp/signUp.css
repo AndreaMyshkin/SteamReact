@@ -24,14 +24,6 @@
    font-weight: bold;
 }
 
-.btn-signUp:hover{
-   color:blueviolet;
-   color: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-   color: -o-linear-gradient(left, #21d4fd, #b721ff);
-   color: -moz-linear-gradient(left, #21d4fd, #b721ff);
-   color: linear-gradient(left, #21d4fd, #b721ff);
-
-}
 .header-singUp{
 
    color:#333333;
@@ -48,5 +40,4 @@
  }
 .input-text:focus {
    border-bottom: 2px solid blueviolet!important ;
-   
  }

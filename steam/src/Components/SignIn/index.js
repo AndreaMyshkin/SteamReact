@@ -19,15 +19,16 @@ your personal account page.
 const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
-      <h3 className='center welcome grey-text text-darken-2'>Welcome to</h3>
+      <h4 className='center welcome grey-text text-darken-3'>Welcome to </h4>
       <h3 className="logo-steam center">STEAM</h3>
-      {/* <LOGO /> */}
+
       <SignInForm />
-      <SignInGoogle />
-      <SignInFacebook />
-      <SignInTwitter />
+      <div className="col l12 s12"> <div id="social-signIn-buttons"> <SignInGoogle /> <SignInFacebook /> <SignInTwitter /></div></div>
+      <div className="password-sign col s12 center">
       <PasswordForgetLink />
       <SignUpLink /></div>
+      
+      </div>
   </div>
 )
 const SignInLink = () => (
@@ -41,7 +42,7 @@ const INITIAL_STATE = {
   password: '',
   error: null,
 }
-/* Login con mail */ 
+/* Login con mail */
 class SignInFormBase extends Component {
   constructor(props) {
     super(props)
@@ -60,7 +61,7 @@ class SignInFormBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -99,7 +100,7 @@ class SignInFormBase extends Component {
 
   }
 }
-/* Login con Google */ 
+/* Login con Google */
 class SignInGoogleBase extends Component {
   constructor(props) {
     super(props)
@@ -125,7 +126,7 @@ class SignInGoogleBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -141,7 +142,7 @@ class SignInGoogleBase extends Component {
     )
   }
 }
-/* Login con Facebook */ 
+/* Login con Facebook */
 class SignInFacebookBase extends Component {
   constructor(props) {
     super(props)
@@ -167,7 +168,7 @@ class SignInFacebookBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -184,7 +185,7 @@ class SignInFacebookBase extends Component {
     )
   }
 }
-/* Login con Twitter */ 
+/* Login con Twitter */
 class SignInTwitterBase extends Component {
   constructor(props) {
     super(props)
@@ -194,6 +195,16 @@ class SignInTwitterBase extends Component {
     this.props.firebase
       .doSignInWithTwitter()
       .then(socialAuthUser => {
+        // Create a user in your Firebase Realtime Database too
+        return this.props.firebase
+          .user(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.additionalUserInfo.profile.name,
+            email: socialAuthUser.additionalUserInfo.profile.email,
+            roles: {}
+          })
+      })
+      .then(socialAuthUser => {
         this.setState({ error: null })
         this.props.history.push(ROUTES.HOME)
       })
@@ -202,17 +213,14 @@ class SignInTwitterBase extends Component {
       })
     event.preventDefault()
   }
-  render () {
+  render() {
     const { error } = this.state
     return (
       <div>
       <a  onClick={this.clickTwitter} class="btn-floating btn-large waves-effect waves-light  light-blue darken-1"><i className="devicon-twitter-plain"></i></a>
        {error && <p>{error.message}</p>}
      </div>
-      // <form onSubmit={this.onSubmit}>
-      //   <button type='submit' className='twitter-button button-social btn-small  col s1 m1 l1'><i className="devicon-twitter-plain"></i></button>
-      //   {error && <p>{error.message}</p>}
-      // </form>
+    
     )
   }
 }

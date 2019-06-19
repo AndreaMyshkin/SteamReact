@@ -3,7 +3,7 @@
       top:10px;
       border-radius: 10px;
       height: 90vh;
-padding: 22px 55px 6px 55px !important;
+padding: 22px 55px 10px 55px !important;
       
    }
 #log{
@@ -19,26 +19,21 @@ padding: 22px 55px 6px 55px !important;
   justify-content: center;
   align-items: center;
 }
-.logo-img{
-  width: 32%;
-   height: 5vh;
+
+
    
-}
-.button-social{
-     font-size: 25px;
-     color: #fff;
-     display: -webkit-box;
-     display: -webkit-flex;
-     display: -moz-box;
-     display: -ms-flexbox;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 40px;
-     height: 50px;
-     border-radius: 50%;
-     margin: 8%;
-     margin-left: 11% !important;
+   #social-signIn-buttons{
+  display: flex;
+   position:relative;
+   top:38px;
+   justify-content: space-around;
+
+
+   }
+   
+   .password-sign{
+  position: relative;
+  top:50px;
    }
 /* .google-button{
   background-color: #ea4335;
