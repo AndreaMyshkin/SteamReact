@@ -7,6 +7,8 @@ import {
   withEmailVerification,
 } from '../../Components/Session'
 import './home.css'
+import Modal from 'react-responsive-modal'
+
 const HomePage = () => (
   <div>
     <Messages />
@@ -151,7 +153,15 @@ class MessageItem extends React.Component {
     this.state = {
       editMode: false,
       editText: this.props.message.text,
+      open: false
     }
+  }
+  onOpenModal = () => {
+    this.setState({ open: true })
+  }
+
+  onCloseModal = () => {
+    this.setState({ open: false })
   }
 
   onChangeEditText = event => {
@@ -171,6 +181,7 @@ class MessageItem extends React.Component {
   }
 
   render() {
+    const { open } = this.state
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
@@ -184,16 +195,16 @@ class MessageItem extends React.Component {
         ) : (
             <div className='container'>
               <div className='card'>
-              <div className=''>
-                <img src={message.userPhoto} className='center photo-post'></img></div>
-              <div>
-                <span>
-                  <strong>{message.nameUser}</strong>
-                  <span>    {message.text}</span>
-                  {message.editedAt && <span>(Edited)</span>}
-                </span>
+                <div className=''>
+                  <img src={message.userPhoto} className='center photo-post'></img></div>
+                <div>
+                  <span>
+                    <strong>{message.nameUser}</strong>
+                    <span>    {message.text}</span>
+                    {message.editedAt && <span>(Edited)</span>}
+                  </span>
+                </div>
               </div>
-            </div>
             </div>
           )}
 
@@ -204,14 +215,23 @@ class MessageItem extends React.Component {
                 <button onClick={this.onSaveEditText}>Save</button>
                 <button onClick={this.onToggleEditMode}>Reset</button>
               </span>
-            ) : (
-                <button onClick={this.onToggleEditMode}> <i class="material-icons">create</i></button>
+            ) : (<span>
+              <button onClick={this.onToggleEditMode}> <i class="material-icons">create</i></button>
+            </span>
               )}
             {!editMode && (
-              <button
-                type='button'
-                onClick={() => onRemoveMessage(message.uid)}
-              > <i class="material-icons">delete</i></button>
+              <div>
+                <button onClick={this.onOpenModal}><i class="material-icons">delete</i></button>
+                <Modal open={open} onClose={this.onCloseModal}>
+                  <h3>Are you sure?</h3>
+                  <div>
+                    <button
+                      type='button'
+                      onClick={() => onRemoveMessage(message.uid)}
+                    > Yes</button>
+                  </div>
+                </Modal>
+              </div>
             )}
           </span>
         )}
