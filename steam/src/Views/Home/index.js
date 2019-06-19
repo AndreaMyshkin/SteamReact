@@ -7,10 +7,10 @@ import {
   withEmailVerification,
   } from '../../Components/Session'
 import './home.css'
-
 const HomePage = () => (
   <div>
-    <h1>Home</h1>
+    <h1>Home Page</h1>
+    <p>The Home Page is accessible by every signed in user.</p>
     <Messages />
   </div>
 )
@@ -113,13 +113,13 @@ class MessagesBase extends React.Component {
             ) : (
                 <div>There are no messages ...</div>
               )}
-            <form className='container input-text' onSubmit={event => this.onCreateMessage(event, authUser)}>
+            <form onSubmit={event => this.onCreateMessage(event, authUser)}>
               <input
                 type='text'
                 value={text}
                 onChange={this.onChangeText}
               />
-              <button disabled={isInvalid} type='submit'><i class="material-icons">near_me</i> Send</ button>
+              <button disabled={isInvalid} type='submit'  >Send</ button>
             </form>
           </div>
         )}
@@ -171,11 +171,11 @@ class MessageItem extends React.Component {
     }))
   }
 
-  render () {
+  render() {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
-      <li >
+      <li>
         {editMode ? (
           <input
             type='text'
@@ -185,22 +185,20 @@ class MessageItem extends React.Component {
         ) : (
             <div className='container'>
               <div className='card'>
-                <div className='img-user'>
-                  <img src={message.userPhoto} className='center photo-post' ></img>
-                </div>
-                <div className='name-container'>
+              <div className=''>
+                <img src={message.userPhoto} className='center photo-post'></img></div>
+              <div>
+                <span>
                   <strong>{message.nameUser}</strong>
-                </div>
-                <div className='text-container'>
-                  {message.text}
-                </div>
+                  <span>{message.text}</span>
                   {message.editedAt && <span>(Edited)</span>}
+                </span>
+              </div>
             </div>
             </div>
           )}
 
         {authUser.uid === message.userId && (
-          <div className='container buttons-edit'>
           <span>
             {editMode ? (
               <span>
@@ -208,16 +206,17 @@ class MessageItem extends React.Component {
                 <button onClick={this.onToggleEditMode}>Reset</button>
               </span>
             ) : (
-                <button onClick={this.onToggleEditMode}><i class="material-icons">create</i></button>
+                <button onClick={this.onToggleEditMode}>Edit</button>
               )}
             {!editMode && (
               <button
                 type='button'
                 onClick={() => onRemoveMessage(message.uid)}
-              > <i class="material-icons">delete</i> </button>
+              >
+                Delete
+    </button>
             )}
           </span>
-          </div>
         )}
       </li>
     )
