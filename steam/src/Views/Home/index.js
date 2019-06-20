@@ -26,7 +26,7 @@ class MessagesBase extends React.Component {
     }
   }
 
-  onChangeText = event => {
+   onChangeText = event => {
     this.setState({ text: event.target.value })
   }
   onCreateMessage = (event, authUser) => {
@@ -53,13 +53,13 @@ class MessagesBase extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.onListenForMessages()
+  componentDidMount () {
+    this.onListenForMessages ()
   }
 
-  onListenForMessages() {
+  onListenForMessages () {
     this.setState({ loading: true })
-    this.props.firebase.messages()
+    this.props.firebase.messages ()
       .orderByChild('createdAt')
       .limitToLast(this.state.limit)
       .on('value', snapshot => {
@@ -69,6 +69,7 @@ class MessagesBase extends React.Component {
             ...messageObject[key],
             uid: key
           }))
+
           const orderedMessages = Array.from(messageList).reverse()
 
           this.setState({
@@ -92,7 +93,7 @@ class MessagesBase extends React.Component {
     )
   }
 
-  render() {
+  render () {
     const { text, messages, loading } = this.state
     const isInvalid = text === ''
 
@@ -102,12 +103,12 @@ class MessagesBase extends React.Component {
           <div>
             {!loading && messages && (
               <form className='container input-text' onSubmit={event => this.onCreateMessage(event, authUser)}>
-                <input
+                <textarea id='text-input'
                   type='text'
                   value={text}
                   onChange={this.onChangeText}
                 />
-                <button disabled={isInvalid} type='submit'><i class="material-icons">near_me</i> Send</ button>
+                <button className='waves-effect waves-light btn' disabled={isInvalid} type='submit'><i class='material-icons'>near_me</i> Send</ button>
               </form>
             )}
             {messages ? (
@@ -154,7 +155,7 @@ class MessageItem extends React.Component {
       editMode: false,
       editText: this.props.message.text,
       open: false
-    }
+          }
   }
   onOpenModal = () => {
     this.setState({ open: true })
@@ -180,15 +181,16 @@ class MessageItem extends React.Component {
     }))
   }
 
-  render() {
+  render () {
     const { open } = this.state
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
       <li>
         {editMode ? (
-          <input
-            type='text'
+          <textarea
+          className='section'
+            type='textarea-edit'
             value={editText}
             onChange={this.onChangeEditText}
           />
@@ -201,6 +203,8 @@ class MessageItem extends React.Component {
                   <span>
                     <strong>{message.nameUser}</strong>
                     <span>    {message.text}</span>
+                    <button etChange={() => this.changeCounter(1)} className='waves-effect waves-light btn'> <i class='material-icons'>favorite</i></button>
+                    <span> Acá va el contador</span>
                     {message.editedAt && <span>(Edited)</span>}
                   </span>
                 </div>
@@ -212,23 +216,24 @@ class MessageItem extends React.Component {
           <span>
             {editMode ? (
               <span>
-                <button onClick={this.onSaveEditText}>Save</button>
-                <button onClick={this.onToggleEditMode}>Reset</button>
+                <button className='waves-effect waves-light btn'onClick={this.onSaveEditText}>Save</button>
+                <button className='waves-effect waves-light btn'onClick={this.onToggleEditMode}>Reset</button>
               </span>
             ) : (<span>
-              <button onClick={this.onToggleEditMode}> <i class="material-icons">create</i></button>
+              <button className='waves-effect waves-light btn'onClick={this.onToggleEditMode}> <i class='material-icons'>create</i>Edit</button>
             </span>
               )}
             {!editMode && (
-              <div>
-                <button onClick={this.onOpenModal}><i class="material-icons">delete</i></button>
+              <div id='modal'>
+                <button className='waves-effect waves-light btn' onClick={this.onOpenModal}><i class='material-icons'>delete</i>Delete</button>
                 <Modal open={open} onClose={this.onCloseModal}>
                   <h3>Are you sure?</h3>
                   <div>
                     <button
-                      type='button'
+                      type='button' className='waves-effect waves-light btn'
                       onClick={() => onRemoveMessage(message.uid)}
                     > Yes</button>
+                    <button className='waves-effect waves-light btn'onClick={this.onToggleEditMode}> <i class='material-icons'>create</i>Edit</button>
                   </div>
                 </Modal>
               </div>
