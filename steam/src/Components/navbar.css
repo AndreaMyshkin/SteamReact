@@ -1,0 +1,17 @@
+.font-nav{
+font-weight: bold;
+font-size:13px;
+letter-spacing: .5px;
+}
+
+.font-nav:hover, .font-nav-logo:hover{
+    color:#b621fe !important;
+}
+
+
+.font-nav-logo{
+    font-weight: bold;
+    font-size:23px;
+    letter-spacing: .5px;
+    margin-left:25px;
+}
