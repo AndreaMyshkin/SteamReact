@@ -35,7 +35,7 @@ class PasswordChangeForm extends Component {
         const { passwordOne, passwordTwo, error } = this.state
         const isInvalid =
             passwordOne !== passwordTwo || passwordOne === ''
-        return (<div className='row'><div className='col l6 offset-l1'><p className='center'>¿do you want to change your password? </p></div>
+        return (<div className='row'><div className='col l6 offset-l1'><p className='center'> Want to change your password? </p></div>
             <form onSubmit={this.onSubmit}>
                 <input className='col l6 offset-l1'
                     name='passwordOne'

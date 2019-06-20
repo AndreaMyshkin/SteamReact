@@ -19,7 +19,7 @@ const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
       <h4 className='center welcome grey-text text-darken-3'>Welcome to </h4>
-      <h3 className='logo-steam center'>STEAM</h3>
+      <h3 className='logo-steam center grey-text text-darken-3'>STEAM</h3>
       <SignInForm />
       <div className='col l12 s12'>
       <div id='social-signIn-buttons'>
