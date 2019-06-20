@@ -50,10 +50,10 @@ class PasswordForgetFormBase extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                     type='text'
-                    placeholder='Correo electrónico'
+                    placeholder='email'
                 />
                 <button disabled={isInvalid} type='submit' className='col l3 offset-l1 btn-sendEmail btn-small waves-effect waves-light'>
-                    Enviar correo
+                    Send Email
                 </button >
                 {error && <p>{error.message}</p>}
             </form></div>

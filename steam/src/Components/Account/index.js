@@ -33,19 +33,19 @@ const SIGN_IN_METHODS = [
 
 const AccountPage = () => (
   <AuthUserContext.Consumer>
-  
+
     {authUser => (
 
-    <div className='row'>
-      <div className='card panel col s10 offset-s1  col l8 offset-l2 white account-card '>
-        <h4 className='center'> Mi cuenta</h4>
-        <h6 className='center email-account'>{authUser ? authUser.email : null}</h6>
-        <div className="photo-box"> <img src={authUser ? authUser.photoURL : null}  className="photo-profile"/></div>
-        <h6 className='center email-account'>{authUser ? authUser.username : null}</h6>
-        <PasswordForgetForm />
-        <PasswordChangeForm />
-        <LoginManagement authUser={authUser} />
-      </div></div>
+      <div className='row'>
+        <div className='card panel col s10 offset-s1  col l8 offset-l2 white account-card '>
+          <h4 className='center'> My Account</h4>
+          <h6 className='center email-account'>{authUser ? authUser.email : null}</h6>
+          <div className="photo-box"> <img src={authUser ? authUser.photoURL : null} className="photo-profile" /></div>
+          <h6 className='center email-account'>{authUser ? authUser.username : null}</h6>
+          <PasswordForgetForm />
+          <PasswordChangeForm />
+          <LoginManagement authUser={authUser} />
+        </div></div>
     )}
   </AuthUserContext.Consumer>
 )
@@ -56,13 +56,13 @@ class LoginManagementBase extends Component {
 
     this.state = {
       activeSignInMethods: [],
-      error: null,
+      error: null
     }
   }
 
-  componentDidMount() {
-    this.fetchSignInMethods();
-    }
+  componentDidMount () {
+    this.fetchSignInMethods()
+  }
 
   fetchSignInMethods = () => {
     this.props.firebase.auth
@@ -105,7 +105,7 @@ class LoginManagementBase extends Component {
     return (
       <div>
         <div id='methods'>
-          Vincula tus cuentas:
+          Sign In Methods:
         </div>
         <ul>
           {SIGN_IN_METHODS.map(signInMethod => {
@@ -152,7 +152,7 @@ const SocialLoginToggle = ({
 }) =>
   isEnabled ? (
     <button
-      className = 'social-toogle'
+      className='social-toogle'
       type='button'
       onClick={() => onUnlink(signInMethod.id)}
       disabled={onlyOneLeft}
@@ -161,7 +161,7 @@ const SocialLoginToggle = ({
     </button>
   ) : (
       <button
-      className = 'social-toogle'
+        className='social-toogle'
         type='button'
         onClick={() => onLink(signInMethod.provider)}
       >
@@ -187,7 +187,7 @@ class DefaultLoginToggle extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render () {
+  render() {
     const {
       onlyOneLeft,
       isEnabled,
@@ -202,7 +202,7 @@ class DefaultLoginToggle extends Component {
 
     return isEnabled ? (
       <button
-        className = 'social-toogle'
+        className='social-toogle'
         type='button'
         onClick={() => onUnlink(signInMethod.id)}
         disabled={onlyOneLeft}
@@ -210,9 +210,9 @@ class DefaultLoginToggle extends Component {
         Deactivate {signInMethod.id}
       </button>
     ) : (
-          <button disabled={isInvalid} className= 'social-toogle'type='submit'>
-            Link {signInMethod.id}
-          </button>
+        <button disabled={isInvalid} className='social-toogle' type='submit'>
+          Link {signInMethod.id}
+        </button>
 
       )
   }

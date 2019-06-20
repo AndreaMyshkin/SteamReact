@@ -1,40 +1,48 @@
-.signIn-card{
+.signIn-card {
   position: relative;
-     top:10px;
-     border-radius: 10px;
-     height: 90vh;
-padding: 22px 55px 10px 55px !important;
-     
-  }
-#log{
- width: 100%;
- display: flex;
- justify-content: center;
- height: 10vh;  
- padding-bottom: 60px;
-}
-.welcome{
- height: 11vh;
- display: flex;
- justify-content: center;
- align-items: center;
+  top: 10px;
+  border-radius: 10px;
+  height: 90vh;
+  padding: 22px 55px 10px 55px !important;
+
 }
 
+/* #log {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  padding-bottom: 60px;
+} */
 
-  
-  #social-signIn-buttons{
- display: flex;
-  position:relative;
-  top:38px;
+.welcome {
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.logo-steam{
+  font-weight: bold;
+  margin-top:15px;
+}
+
+#social-signIn-buttons {
+  display: flex;
+  position: relative;
+  top: 38px;
   justify-content: space-around;
+margin-bottom:26px;
+margin-top:15px;
 
+}
 
-  }
-  
-  .password-sign{
- position: relative;
- top:50px;
-  }
+.password-sign {
+  position: relative;
+  top: 50px;
+}
+
 /* .google-button{
  background-color: #ea4335;
  width:  12.333333% !important;
@@ -51,27 +59,23 @@ padding: 22px 55px 10px 55px !important;
     color: #fff;
     background-color: #333333;
   } */
-#login100-form-btn{
- width: 100%;
- color: white;
- font-weight: bold;
- border-radius:25px;
- height: 40px;
- position: relative;
- top:15px;
- background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%) ;
-}
-#login100-form-btn:hover{
- color:blueviolet;
-
+#login100-form-btn {
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  height: 40px;
+  position: relative;
+  top: 26px;
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
 }
 
-.logo-steam{
- font-weight: bold;
- position:relative;
- bottom:19px;
+#login100-form-btn:hover {
+  color: blueviolet;
 }
+
+
 .input-text:focus {
- border-bottom: 2px solid blueviolet!important ;
+  border-bottom: 2px solid blueviolet !important;
 
 }
