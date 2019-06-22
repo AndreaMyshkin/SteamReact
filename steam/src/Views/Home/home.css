@@ -18,11 +18,11 @@
     border: 2px solid blueviolet !important;
 }
 .send_button{
-    border: 2px solid #b621fe;
+    border: 2px solid blueviolet;
     padding: 0 10px;
     border-radius: 3px;
-    color: black;
-    background-color: #ffffff;
+    color: blueviolet;
+    background-color: #ffffff !important;
 }
 .button_next{
     display: flex;
@@ -30,32 +30,10 @@
     height: 9vh;
     align-items: center;
 }
-
-
-@media (min-width: 700px) and (max-width: 1000px) {
-    .name_user {
-        width: 80%;
-        margin-left: 7%;
-    }
-}
 .button_container{
     display: flex;
     justify-content: center;
+    margin-top: -2%;
 }
 
-@media (min-width: 1000px) and (max-width: 2000px) {
-    .name_user {
-        width: 10%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    .photo_user {
-        width: 14%;
-        height: 10vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}

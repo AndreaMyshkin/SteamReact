@@ -222,12 +222,12 @@ class MessageItem extends React.Component {
           <span>
             {editMode ? (
               <div className='container'>
-                <button className='waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
-                <button className='waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
+                <button className='send_button waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
+                <button className='send_button waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
               </div>
             ) : (<div className='container button_container'>
-              <button className='waves-effect waves-light btn' onClick={this.onToggleEditMode}> <i class='material-icons'>create</i>Edit</button>
-              <button className='waves-effect waves-light btn' onClick={this.onOpenModal}><i class='material-icons'>delete</i>Delete</button>
+              <button className='send_button waves-effect waves-light btn' onClick={this.onToggleEditMode}> <i class='material-icons'>create</i>Edit</button>
+              <button className='send_button waves-effect waves-light btn' onClick={this.onOpenModal}><i class='material-icons'>delete</i>Delete</button>
             </div>
               )}
             {!editMode && (
@@ -236,7 +236,7 @@ class MessageItem extends React.Component {
                   <h3>Are you sure?</h3>
                   <div>
                     <button
-                      type='button' className='waves-effect waves-light btn'
+                      type='button' className=' send_button waves-effect waves-light btn'
                       onClick={() => onRemoveMessage(message.uid)}
                     > Yes</button>
                   </div>
