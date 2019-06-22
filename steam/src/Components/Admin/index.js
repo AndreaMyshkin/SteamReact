@@ -66,6 +66,7 @@ class UserListBase extends Component {
       users: []
     }
   }
+
   componentDidMount() {
     this.setState({ loading: true })
     this.props.firebase.users().on('value', snapshot => {
@@ -80,10 +81,12 @@ class UserListBase extends Component {
       })
     })
   }
+
   componentWillUnmount() {
     this.props.firebase.users().off()
   }
-  render() {
+
+  render () {
     const { users, loading } = this.state
     return (
       <div>
@@ -124,6 +127,7 @@ class UserItemBase extends Component {
       ...props.location.state,
     }
   }
+
   componentDidMount () {
     if (this.state.user) {
       return
@@ -139,9 +143,11 @@ class UserItemBase extends Component {
         })
       })
   }
+
   componentWillUnmount () {
     this.props.firebase.user(this.props.match.params.id).off()
   }
+
   onSendPasswordResetEmail = () => {
     this.props.firebase.doPasswordReset(this.state.user.email)
   }

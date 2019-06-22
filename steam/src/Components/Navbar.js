@@ -22,7 +22,7 @@ const Navigation = () => (
 const NavigationAuth = ({ authUser }) => (
   <nav>
     <div className='nav-wrapper nav-mobile white  '>
-      <a href="#" className="brand-logo"><Link className='grey-text text-darken-3 font-nav-logo' to={ROUTES.HOME}> STEAM</Link></a>
+      <a href='#' className='brand-logo'><Link className='grey-text text-darken-3 font-nav-logo' to={ROUTES.HOME}> STEAM</Link></a>
       <ul className='right hide-on-med-and-down'>
         <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.COMUNITY}>Comunidad Steam</Link></li>
         <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.FORUM}>Foro</Link></li>

@@ -29,18 +29,15 @@ const SIGN_IN_METHODS = [
   }
 ]
 
-
-
 const AccountPage = () => (
   <AuthUserContext.Consumer>
 
     {authUser => (
-
       <div className='row'>
         <div className='card panel col s10 offset-s1  col l8 offset-l2 white account-card '>
           <h4 className='center'> My Account</h4>
           <h6 className='center email-account'>{authUser ? authUser.email : null}</h6>
-          <div className="photo-box"> <img src={authUser ? authUser.photoURL : null} className="photo-profile" /></div>
+          <div className='photo-box'> <img src={authUser ? authUser.photoURL : null} className='photo-profile' /></div>
           <h6 className='center email-account'>{authUser ? authUser.username : null}</h6>
           <PasswordForgetForm />
           <PasswordChangeForm />
@@ -187,7 +184,7 @@ class DefaultLoginToggle extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render() {
+  render () {
     const {
       onlyOneLeft,
       isEnabled,

@@ -1,6 +1,6 @@
 .photo-post {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -8,6 +8,54 @@
     display: inline-block;
 }
 
-#text-input:focus {
-    border-bottom: 2px solid blueviolet !important;
+#text-input {
+    margin-top: 2%;
+}
+.card-content{
+    overflow: overlay;
+}
+#input_edit, #text-input:focus {
+    border: 2px solid blueviolet !important;
+}
+.send_button{
+    border: 2px solid #b621fe;
+    padding: 0 10px;
+    border-radius: 3px;
+    color: black;
+    background-color: #ffffff;
+}
+.button_next{
+    display: flex;
+    justify-content: center;
+    height: 9vh;
+    align-items: center;
+}
+
+
+@media (min-width: 700px) and (max-width: 1000px) {
+    .name_user {
+        width: 80%;
+        margin-left: 7%;
+    }
+}
+.button_container{
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 1000px) and (max-width: 2000px) {
+    .name_user {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .photo_user {
+        width: 14%;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

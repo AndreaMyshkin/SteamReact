@@ -183,7 +183,7 @@ class SignInFacebookBase extends Component {
     const { error } = this.state
     return (
       <div>
-      <a  id='auth-facebook'   onClick={this.clickFacebook} class='btn-floating btn-large waves-effect waves-light  light-blue darken-4'><i className='devicon-facebook-plain'></i></a>
+      <a  id='auth-facebook' onClick={this.clickFacebook} class='btn-floating btn-large waves-effect waves-light  light-blue darken-4'><i className='devicon-facebook-plain'></i></a>
        {error && <p>{error.message}</p>}
      </div>
     )
