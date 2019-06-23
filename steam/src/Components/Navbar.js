@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import SignOutButton from './SignOut'
+import M from 'materialize-css'
 import * as ROUTES from '../Constants/routesFirebase'
 import { AuthUserContext } from './Session'
+// import 'materialize-css/dist/css/materialize.min.css'
 import * as ROLES from '../Constants/roles'
 import './navbar.css'
+
 const Navigation = () => (
   <div>
     <AuthUserContext.Consumer>
@@ -12,23 +15,43 @@ const Navigation = () => (
         authUser ? (
           <NavigationAuth authUser={authUser} />
         ) : (
-          <NavigationNonAuth />
+          <NavigationNonAuth/>
         )
       }
     </AuthUserContext.Consumer>
   </div>
 )
 
-const NavigationAuth = ({ authUser }) => (
+
+
+class NavigationAuth extends React.Component{
+  constructor(props) {
+    super(props);
+    
+    }
+  componentDidMount () {
+    var elem = document.querySelector('.sidenav')
+    var instance = M.Sidenav.init(elem, {
+      edge: 'left',
+      inDuration: 300
+
+    })
+    console.log(instance)
+  }
+render(){
+return(
+<AuthUserContext.Consumer>
+{authUser => (
+<div>
   <nav>
     <div className='nav-wrapper nav-mobile white  '>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i className="material-icons hamburguer-menu">menu</i></a>
       <a href="#" className="brand-logo"><Link className='grey-text text-darken-3 font-nav-logo' to={ROUTES.HOME}> STEAM</Link></a>
       <ul className='right hide-on-med-and-down'>
-        <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.COMUNITY}>Comunidad Steam</Link></li>
-        <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.FORUM}>Foro</Link></li>
+        <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.COMUNITY}>STEAM Comunity</Link></li>
+        <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.FORUM}>Forum</Link></li>
         <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.HOME}>Home</Link></li>
-        <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.MYPROFILE}>Mi Perfil</Link></li>
-        <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.ACCOUNT}>Account</Link></li>
+        <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.ACCOUNT}>My Account</Link></li>
         {!!authUser.roles[ROLES.ADMIN] && (
           <li>
             <Link className='grey-text text-darken-3' to={ROUTES.ADMIN}>Admin</Link>
@@ -38,7 +61,45 @@ const NavigationAuth = ({ authUser }) => (
       </ul>
     </div>
   </nav>
+  <ul id="slide-out" class="sidenav">
+  <li><div class="user-view">
+    <div class="background">
+    </div>
+    <div className="photo-box"> <img  class="circle" src={authUser ? authUser.photoURL : null} className="photo-profile-on-side-nav" /></div>
+          <h6 className='center user-name-on-side-nav'>{authUser ? authUser.username : null}</h6>
+  </div></li>
+  <div className="options-on-side-nav">
+  <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.COMUNITY}>STEAM Comunity</Link></li>
+  <li><div class="divider"></div></li>
+  <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.FORUM}>Forum</Link></li>
+  <li><div class="divider"></div></li>
+  <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.HOME}>Home</Link></li>
+  <li><div class="divider"></div></li>
+  <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.ACCOUNT}>My Account</Link></li>
+  <li><div class="divider"></div></li>
+  {!!authUser.roles[ROLES.ADMIN] && (
+          <>
+          <li>
+            <Link className='grey-text text-darken-3' to={ROUTES.ADMIN}>Admin</Link>
+          </li>
+           <li><div class="divider"></div></li></>
+        )}
+    
+         <li className="center"><SignOutButton /></li></div>
+</ul>
+
+</div>
+
+)}
+</AuthUserContext.Consumer>
 )
+
+}
+
+
+}
+
+
 
 const NavigationNonAuth = () => (
   <nav>

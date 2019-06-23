@@ -1,11 +1,25 @@
 import React from 'react'
+import { componentFromProp } from 'recompose';
 
-const Forum = (props) => (
-  <div className='container'>
+class Forum extends React.Component{
+fileSelectedHandler = event =>{
+console.log(event)
+}
+  render () {
+    return (
 
-    <h2>Foro</h2>
+<div><input type='file' onChange={this.fileSelectedHandler}/></div>
 
-  </div>
 )
 
-export default Forum
+
+}
+
+
+
+
+
+}
+
+export default Forum;
+

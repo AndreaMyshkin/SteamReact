@@ -15,3 +15,27 @@ letter-spacing: .5px;
     letter-spacing: .5px;
     margin-left:25px;
 }
+
+.hamburguer-menu{
+    color:#b621fe ;
+}
+
+.photo-profile-on-side-nav{
+   width: 100px;
+height: 100px;
+position:relative;
+top:40px;
+}
+.user-name-on-side-nav{
+
+    position:relative;
+    top:40px;
+}
+
+.options-on-side-nav{
+    position:relative;
+    top:80px;
+
+}
+
+/* border-radius: 50%; */

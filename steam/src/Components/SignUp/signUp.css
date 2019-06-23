@@ -2,8 +2,10 @@
 
    padding: 22px 55px 6px 55px !important;
    border-radius:10px !important;
-
+     position: relative;
+     top:50px;
 }
+
 .create-acount{
    width: 100%;
    display: flex;

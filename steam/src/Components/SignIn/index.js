@@ -39,7 +39,12 @@ const SignInLink = () => (
   </p>
   </div>
 )
-
+const SignInLinkOnPasswordChange = () => (
+  <div className='already-acount'>
+  <p  className="center"> Back To <Link to={ROUTES.SIGN_IN}> Sign in</Link>
+  </p>
+  </div>
+)
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -140,7 +145,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state
     return (
       <div>
-       <a  id='auth-google' onClick={this.clickGoogle} class='btn-floating btn-large waves-effect waves-light red'><i className='devicon-google-plain'></i></a>
+       <a  id='auth-google' onClick={this.clickGoogle} class='btn-floating btn-large waves-effect waves-light red accent-3'><i className='devicon-google-plain'></i></a>
         {error && <p>{error.message}</p>}
       </div>
     )
@@ -251,4 +256,4 @@ const SignInTwitter = compose(
   withFirebase,
 )(SignInTwitterBase)
 
-export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter, SignInLink }
+export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter, SignInLink, SignInLinkOnPasswordChange }

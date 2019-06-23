@@ -6,7 +6,6 @@ import {
   withEmailVerification
 } from '../Session'
 import { withFirebase } from '../Firebase'
-import { PasswordForgetForm } from '../PasswordForget'
 import PasswordChangeForm from '../PasswordChange'
 import './account.css'
 
@@ -42,7 +41,7 @@ const AccountPage = () => (
           <h6 className='center email-account'>{authUser ? authUser.email : null}</h6>
           <div className="photo-box"> <img src={authUser ? authUser.photoURL : null} className="photo-profile" /></div>
           <h6 className='center email-account'>{authUser ? authUser.username : null}</h6>
-          <PasswordForgetForm />
+    
           <PasswordChangeForm />
           <LoginManagement authUser={authUser} />
         </div></div>

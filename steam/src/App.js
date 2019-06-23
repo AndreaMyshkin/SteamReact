@@ -6,7 +6,6 @@ import SignInPage from './Components/SignIn'
 import HomePage from './Views/Home'
 import Forum from './Views/Forum'
 import Comunity from './Views/Comunity'
-import MyProfile from './Views/Profile'
 import AccountPage from './Components/Account'
 import AdminPage from './Components/Admin'
 import { withAuthentication } from './Components/Session'
@@ -25,7 +24,6 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route path={ROUTES.MYPROFILE} component={MyProfile} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>
