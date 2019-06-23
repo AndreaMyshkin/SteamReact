@@ -1,6 +1,6 @@
 .photo-post {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -8,6 +8,45 @@
     display: inline-block;
 }
 
+
+#text-input {
+    margin-top: 2%;
+}
+.card-content{
+    overflow: overlay;
+}
+#input_edit{
+    border: 2px solid blueviolet !important;
+    margin-top: 35px;
+    min-height: 60px;
+}
+
 #text-input:focus {
-    border-bottom: 2px solid blueviolet !important;
+    border: 2px solid blueviolet !important;
+}
+.send_button{
+    border: 2px solid blueviolet;
+    padding: 0 10px;
+    border-radius: 3px;
+    color: blueviolet;
+    background-color: #ffffff !important;
+}
+.button_next{
+    display: flex;
+    justify-content: center;
+    height: 9vh;
+    align-items: center;
+}
+.button_container{
+    display: flex;
+    justify-content: center;
+    margin-top: -2%;
+}
+.card-post-home{
+border-radius:8px !important;
+}
+
+.card.small .card-content, .card.medium .card-content, .card.large .card-content {
+    max-height: 1000%;
+    overflow: hidden;
 }

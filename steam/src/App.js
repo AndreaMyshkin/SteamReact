@@ -16,7 +16,6 @@ const App = () => (
   <Router>
     <div>
       <Navigation />
-   
       {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
       <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
       <Route path={ROUTES.COMUNITY} component={Comunity} />

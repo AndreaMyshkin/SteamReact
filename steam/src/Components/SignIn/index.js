@@ -102,7 +102,7 @@ class SignInFormBase extends Component {
         <button disabled={isInvalid} type='submit' id= 'login100-form-btn' className= 'btn-small col l12'>
          Sign in
         </button>
-        {error && <p>{error.message}</p>}
+        {error && <p className="error-message-on-login center">{error.message}</p>}
       </form>
     )
 
@@ -146,7 +146,7 @@ class SignInGoogleBase extends Component {
     return (
       <div>
        <a  id='auth-google' onClick={this.clickGoogle} class='btn-floating btn-large waves-effect waves-light red accent-3'><i className='devicon-google-plain'></i></a>
-        {error && <p>{error.message}</p>}
+        {error && <p className="error-message-on-login center">{error.message}</p>}
       </div>
     )
   }
@@ -188,8 +188,8 @@ class SignInFacebookBase extends Component {
     const { error } = this.state
     return (
       <div>
-      <a  id='auth-facebook'   onClick={this.clickFacebook} class='btn-floating btn-large waves-effect waves-light  light-blue darken-4'><i className='devicon-facebook-plain'></i></a>
-       {error && <p>{error.message}</p>}
+      <a  id='auth-facebook' onClick={this.clickFacebook} class='btn-floating btn-large waves-effect waves-light  light-blue darken-4'><i className='devicon-facebook-plain'></i></a>
+       {error && <p className="error-message-on-login center">{error.message}</p>}
      </div>
     )
   }
@@ -229,7 +229,7 @@ class SignInTwitterBase extends Component {
     return (
       <div>
       <a  onClick={this.clickTwitter} class='btn-floating btn-large waves-effect waves-light  light-blue darken-1'><i className='devicon-twitter-plain'></i></a>
-       {error && <p>{error.message}</p>}
+       {error && <p className=" error-message-on-twitter">{error.message}</p>}
      </div>
     )
   }

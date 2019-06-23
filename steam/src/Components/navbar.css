@@ -1,8 +1,19 @@
 .font-nav{
 font-weight: bold;
 font-size:13px;
-letter-spacing: .5px;
+letter-spacing: 1px;
+margin-right: 20px;
+
 }
+
+.font-nav-mobile{
+    font-weight: bold;
+    font-size:13px;
+    letter-spacing: 1px;
+    margin-left:20px;
+   
+    
+    }
 
 .font-nav:hover, .font-nav-logo:hover{
     color:#b621fe !important;
@@ -37,5 +48,9 @@ top:40px;
     top:80px;
 
 }
+.sign-out-mobile{
+position:relative;
+top:55px;
 
+}
 /* border-radius: 50%; */

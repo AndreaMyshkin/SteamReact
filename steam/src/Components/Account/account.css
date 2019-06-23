@@ -4,30 +4,40 @@
     background-image: linear-gradient(315deg,#b621fe 0%, #1fd1f9  74%) ;
     border-radius:25px;
     padding: 0 10px;
-    width: 50%;
+    width: 61%;
     height: 35px;
-    font-family:'Poppins:600', sans-serif  ;
     position:relative;
     top:5px !important;
     font-size:14px;
     font-weight: bold;
     border:0;
     margin: 1px;
-    margin-left: 25% !important;
+    margin-left: 20% !important;
+    margin-bottom:5px;
 }
 .email-account{
-    margin-bottom:60px;
+    margin-bottom:50px;
+    font-size:13px;
+
 }
 
 .account-card{
-    border-radius:10px;
+    border-radius:5px;
+    margin-top:25px;
+    padding: 22px 65px 20px 65px !important;
 }
-#methods{
-    width: 100% ;
-    height: 4vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+
+.account-card-profile{
+    border-radius:5px;
+    margin-top:25px;
+ 
+}
+.methods-text{
+    font-weight: bold;
+    font-size:16.5px;
+    
 }
 
 .photo-box{
@@ -38,4 +48,21 @@ justify-content: center;
 width:150px;
 height: 150px;
 border-radius:50%;
+margin-top:55px;
+background-color: white;
+border-radius: 50%;
+overflow: hidden;
+padding: 25px 28px 28px 28px;
+text-align: center;
+border: 4px solid#b621fe;
+box-sizing: border-box;
+display: flex;
+
+
+}
+
+.user-account{
+margin-top:30px;
+font-weight: bold;
+line-height: 1;
 }

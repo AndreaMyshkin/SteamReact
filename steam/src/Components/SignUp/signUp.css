@@ -1,9 +1,9 @@
 .signUp-card{
 
    padding: 22px 55px 6px 55px !important;
-   border-radius:10px !important;
+   border-radius:8px;
      position: relative;
-     top:50px;
+     top:55px;
 }
 
 .create-acount{
@@ -38,8 +38,9 @@
    font-size:14px !important;
 }
 .input-password:focus  {
-   box-shadow: 0 2px 0 0 blueviolet !important;
+   box-shadow: 0 1px 0 0 blueviolet !important;
  }
 .input-text:focus {
-   border-bottom: 2px solid blueviolet!important ;
+   border-bottom: 1px solid blueviolet!important ;
  }
+ 

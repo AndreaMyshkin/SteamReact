@@ -9,6 +9,7 @@ import { withFirebase } from '../Firebase'
 import PasswordChangeForm from '../PasswordChange'
 import './account.css'
 
+
 const SIGN_IN_METHODS = [
   {
     id: 'password',
@@ -28,23 +29,27 @@ const SIGN_IN_METHODS = [
   }
 ]
 
-
-
 const AccountPage = () => (
+
   <AuthUserContext.Consumer>
 
     {authUser => (
-
       <div className='row'>
-        <div className='card panel col s10 offset-s1  col l8 offset-l2 white account-card '>
-          <h4 className='center'> My Account</h4>
-          <h6 className='center email-account'>{authUser ? authUser.email : null}</h6>
-          <div className="photo-box"> <img src={authUser ? authUser.photoURL : null} className="photo-profile" /></div>
-          <h6 className='center email-account'>{authUser ? authUser.username : null}</h6>
-    
+        <div className='card panel col s10 offset-s1  col l2 offset-l1 white account-card-profile '>
+     
+          <div className='photo-box'> <img src={authUser ? authUser.photoURL : null } className='photo-profile' alt="" /></div>
+          <h6 className='center user-account'>{authUser ? authUser.username : null}</h6>
+         <h6 className='center email-account'>{authUser ? authUser.email : null}</h6>
+    </div>
+          
+          <div className="card panel col l7 col s10 offset-s1 offset-l1 account-card">
+             
           <PasswordChangeForm />
           <LoginManagement authUser={authUser} />
-        </div></div>
+        </div>
+        
+        
+        </div>
     )}
   </AuthUserContext.Consumer>
 )
@@ -103,7 +108,7 @@ class LoginManagementBase extends Component {
 
     return (
       <div>
-        <div id='methods'>
+        <div className="center methods-text">
           Sign In Methods:
         </div>
         <ul>
@@ -186,7 +191,7 @@ class DefaultLoginToggle extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render() {
+  render () {
     const {
       onlyOneLeft,
       isEnabled,

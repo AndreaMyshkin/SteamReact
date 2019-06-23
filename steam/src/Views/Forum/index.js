@@ -1,5 +1,5 @@
 import React from 'react'
-import { componentFromProp } from 'recompose';
+// import { componentFromProp } from 'recompose';
 
 class Forum extends React.Component{
 fileSelectedHandler = event =>{

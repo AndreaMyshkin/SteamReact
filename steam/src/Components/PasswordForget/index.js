@@ -14,7 +14,7 @@ const PasswordForgetPage = () => (
     <div className='row'>
     <div className='col s12 m12 l10 offset-l1'>
     <div className=' col s10 offset-s1 m10 offset-m1  l4 offset-l4'>
-        <div className=' card-panel signUp-card'>
+        <div className=' card-panel password-forget-card'>
             <h4 className=' center  header-singUp'>Forgot your password?</h4>
             <p className='center'>Enter your e-mail and we'll send you a password reset link to get back into your account.</p>
               <PasswordForgetForm />

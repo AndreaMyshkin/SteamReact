@@ -1,19 +1,12 @@
 .signIn-card {
   position: relative;
-  top: 30px;
-  border-radius: 10px;
-  height: 90vh;
+  top: 27px;
+  border-radius: 8px;
+  height: 92vh;
   padding: 22px 55px 10px 55px !important;
 
 }
 
-/* #log {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  height: 10vh;
-  padding-bottom: 60px;
-} */
 
 .welcome {
   height: 7vh;
@@ -43,22 +36,7 @@ margin-top:15px;
   top: 50px;
 }
 
-/* .google-button{
- background-color: #ea4335;
- width:  12.333333% !important;
-}
-.facebook-button{
- background-color: #1b56a2;
- width: 12.333333% !important;
-}
-.twitter-button{
- background-color: #16b3e7;
- width:  12.333333% !important;
-}
-.button-social:hover {
-    color: #fff;
-    background-color: #333333;
-  } */
+
 #login100-form-btn {
   width: 100%;
   color: white;
@@ -78,4 +56,18 @@ margin-top:15px;
 .input-text:focus {
   border-bottom: 2px solid blueviolet !important;
 
+}
+
+.error-message-on-login {
+  font-size: 10px;
+  position: relative;
+  top: 43px;
+}
+
+.error-message-on-twitter{
+  font-size: 10px;
+  justify-content: center;
+  position:relative;
+  right:30px;
+  top:10px;
 }
