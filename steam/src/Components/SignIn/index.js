@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import { SignUpLink } from '../SignUp'
 import { withFirebase } from '../Firebase'
 import { PasswordForgetLink } from '../PasswordForget'
 import * as ROUTES from '../../Constants/routesFirebase'
-import LOGO from '../SignIn/LogoLogin'
 import './signIn.css'
 
 const ERROR_CODE_ACCOUNT_EXISTS =
-  'auth/account-exists-with-different-credential'
+'auth/account-exists-with-different-credential'
 const ERROR_MSG_ACCOUNT_EXISTS = `
 An account with an E-Mail address to
 this social account already exists. Try to login from
@@ -19,23 +18,39 @@ your personal account page.
 const SignInPage = () => (
   <div className='row'>
     <div className='white col s10 offset-s1 l4 offset-l4 signIn-card'>
-      <h3 className='center welcome grey-text text-darken-2'>Bienvenido a</h3>
-      <LOGO />
+      <h4 className='center welcome grey-text text-darken-3'>Welcome to </h4>
+      <h3 className='logo-steam center grey-text text-darken-3'>STEAM</h3>
       <SignInForm />
-      <SignInGoogle />
-      <SignInFacebook />
-      <SignInTwitter />
+      <div className='col l12 s12'>
+      <div id='social-signIn-buttons'>
+          <SignInGoogle /> <SignInFacebook /> <SignInTwitter />
+      </div>
+      </div>
+      <div className='password-sign col s12 center'>
       <PasswordForgetLink />
       <SignUpLink /></div>
+      </div>
   </div>
 )
 
+const SignInLink = () => (
+  <div className='already-acount'>
+  <p > Already have an account?  <Link to={ROUTES.SIGN_IN}> Sign in</Link>
+  </p>
+  </div>
+)
+const SignInLinkOnPasswordChange = () => (
+  <div className='already-acount'>
+  <p  className="center"> Back To <Link to={ROUTES.SIGN_IN}> Sign in</Link>
+  </p>
+  </div>
+)
 const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
 }
-/* Login con mail */ 
+/* Login con mail */
 class SignInFormBase extends Component {
   constructor(props) {
     super(props)
@@ -54,7 +69,7 @@ class SignInFormBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
@@ -63,12 +78,13 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  render() {
+  render () {
     const { email, password, error } = this.state
     const isInvalid = password === '' || email === ''
     return (
       <form onSubmit={this.onSubmit}>
         <input
+          className='input-text'
           name='email'
           value={email}
           onChange={this.onChange}
@@ -76,6 +92,7 @@ class SignInFormBase extends Component {
           placeholder='Email Address'
         />
         <input
+          className='input-password'
           name='password'
           value={password}
           onChange={this.onChange}
@@ -83,21 +100,22 @@ class SignInFormBase extends Component {
           placeholder='Password'
         />
         <button disabled={isInvalid} type='submit' id= 'login100-form-btn' className= 'btn-small col l12'>
-          Entrar
+         Sign in
         </button>
-        {error && <p>{error.message}</p>}
+        {error && <p className="error-message-on-login center">{error.message}</p>}
       </form>
     )
 
   }
 }
-/* Login con Google */ 
+/* Login con Google */
 class SignInGoogleBase extends Component {
   constructor(props) {
     super(props)
     this.state = { error: null }
   }
-  onSubmit = event => {
+
+  clickGoogle = event => {
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
@@ -117,28 +135,30 @@ class SignInGoogleBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
   }
-  render() {
+
+  render () {
     const { error } = this.state
     return (
-      <form onSubmit={this.onSubmit}>
-        <button id='auth-google' className='google-button button-social btn-small  col s1 m1 l1' type='submit'><i className="devicon-google-plain"></i></button>
-        {error && <p>{error.message}</p>}
-      </form>
+      <div>
+       <a  id='auth-google' onClick={this.clickGoogle} class='btn-floating btn-large waves-effect waves-light red accent-3'><i className='devicon-google-plain'></i></a>
+        {error && <p className="error-message-on-login center">{error.message}</p>}
+      </div>
     )
   }
 }
-/* Login con Facebook */ 
+/* Login con Facebook */
 class SignInFacebookBase extends Component {
   constructor(props) {
     super(props)
     this.state = { error: null }
   }
-  onSubmit = event => {
+
+  clickFacebook= event => {
     this.props.firebase
       .doSignInWithFacebook()
       .then(socialAuthUser => {
@@ -158,31 +178,42 @@ class SignInFacebookBase extends Component {
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
           error.message = ERROR_MSG_ACCOUNT_EXISTS
-          }
+        }
         this.setState({ error })
       })
     event.preventDefault()
   }
 
-  render() {
+  render () {
     const { error } = this.state
     return (
-      <form onSubmit={this.onSubmit}>
-        <button id='auth-facebook' className='facebook-button button-social btn-small col s1 m1 l1' type='submit'><i className="devicon-facebook-plain"></i></button>
-        {error && <p>{error.message}</p>}
-      </form>
+      <div>
+      <a  id='auth-facebook' onClick={this.clickFacebook} class='btn-floating btn-large waves-effect waves-light  light-blue darken-4'><i className='devicon-facebook-plain'></i></a>
+       {error && <p className="error-message-on-login center">{error.message}</p>}
+     </div>
     )
   }
 }
-/* Login con Twitter */ 
+/* Login con Twitter */
 class SignInTwitterBase extends Component {
   constructor(props) {
     super(props)
     this.state = { error: null }
   }
-  onSubmit = event => {
+
+  clickTwitter = event => {
     this.props.firebase
       .doSignInWithTwitter()
+      .then(socialAuthUser => {
+        // Create a user in your Firebase Realtime Database too
+        return this.props.firebase
+          .user(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.additionalUserInfo.profile.name,
+            email: socialAuthUser.additionalUserInfo.profile.email,
+            roles: {}
+          })
+      })
       .then(socialAuthUser => {
         this.setState({ error: null })
         this.props.history.push(ROUTES.HOME)
@@ -192,13 +223,14 @@ class SignInTwitterBase extends Component {
       })
     event.preventDefault()
   }
+
   render () {
     const { error } = this.state
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type='submit' className='twitter-button button-social btn-small  col s1 m1 l1'><i className="devicon-twitter-plain"></i></button>
-        {error && <p>{error.message}</p>}
-      </form>
+      <div>
+      <a  onClick={this.clickTwitter} class='btn-floating btn-large waves-effect waves-light  light-blue darken-1'><i className='devicon-twitter-plain'></i></a>
+       {error && <p className=" error-message-on-twitter">{error.message}</p>}
+     </div>
     )
   }
 }
@@ -224,4 +256,4 @@ const SignInTwitter = compose(
   withFirebase,
 )(SignInTwitterBase)
 
-export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter }
+export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter, SignInLink, SignInLinkOnPasswordChange }

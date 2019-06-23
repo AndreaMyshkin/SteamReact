@@ -1,79 +1,73 @@
-.signIn-card{
-   position: relative;
-      top:10px;
-      border-radius: 10px;
-      height: 87vh;
-   
-      
-   }
-#log{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  height: 13vh;  
-  padding-bottom: 60px;
+.signIn-card {
+  position: relative;
+  top: 27px;
+  border-radius: 8px;
+  height: 92vh;
+  padding: 22px 55px 10px 55px !important;
+
 }
-.welcome{
-  height: 13vh;
+
+
+.welcome {
+  height: 7vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
-.logo-img{
-  width: 32%;
-   height: 5vh;
-   
+
+.logo-steam{
+  font-weight: bold;
+  margin-top:15px;
 }
-.button-social{
-     font-size: 25px;
-     color: #fff;
-     display: -webkit-box;
-     display: -webkit-flex;
-     display: -moz-box;
-     display: -ms-flexbox;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 40px;
-     height: 50px;
-     border-radius: 50%;
-     margin: 8%;
-     margin-left: 11% !important;
-   }
-.google-button{
-  background-color: #ea4335;
-  width:  12.333333% !important;
+
+#social-signIn-buttons {
+  display: flex;
+  position: relative;
+  top: 38px;
+  justify-content: space-around;
+margin-bottom:26px;
+margin-top:15px;
+
 }
-.facebook-button{
-  background-color: #1b56a2;
-  width: 12.333333% !important;
+
+.password-sign {
+  position: relative;
+  top: 50px;
 }
-.twitter-button{
-  background-color: #16b3e7;
-  width:  12.333333% !important;
-}
-.button-social:hover {
-     color: #fff;
-     background-color: #333333;
-   }
-#login100-form-btn{
+
+
+#login100-form-btn {
   width: 100%;
   color: white;
   font-weight: bold;
-  border-radius:25px;
-  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%) ;
+  border-radius: 25px;
+  height: 40px;
+  position: relative;
+  top: 26px;
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
 }
-#login100-form-btn:hover{
-  color:blueviolet;
 
+#login100-form-btn:hover {
+  color: blueviolet;
 }
-.input-text{
-  height: 4rem!important;
-  font-family:'Poppins:600', sans-serif  !important;
-  font-size:14px !important;
-}
+
 
 .input-text:focus {
-  border-bottom: 2px solid blueviolet!important ;
-  
+  border-bottom: 2px solid blueviolet !important;
+
+}
+
+.error-message-on-login {
+  font-size: 10px;
+  position: relative;
+  top: 43px;
+}
+
+.error-message-on-twitter{
+  font-size: 10px;
+  justify-content: center;
+  position:relative;
+  right:30px;
+  top:10px;
 }
