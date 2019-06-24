@@ -1,6 +1,6 @@
-export const LANDING = '/'
+
 export const SIGN_UP = '/SignUpPage'
-export const SIGN_IN = '/SignInPage'
+export const SIGN_IN = '/'
 export const HOME = '/home'
 export const FORUM = '/forum'
 export const ACCOUNT = '/account'
