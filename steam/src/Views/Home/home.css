@@ -11,25 +11,75 @@
 
 #text-input {
     margin-top: 2%;
+    background-color: #fff;
+    border-radius:10px;
+    border:2px solid #1da1f2;
+    
 }
 .card-content{
     overflow: overlay;
 }
-#input_edit{
+.title-on-card{
+    word-break: break-all;
+    color: #424242;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.message-on-forum{
+    color: #424242;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    
+}
+.input_text_post{
+    background-color: #e6e9eb;
+    height:100px;
+    border-radius:3px;
+    border: 1px solid #e6ecf0;
+    display:flex;
+    align-items: center;
+}
+/* #input_edit{
     border: 2px solid blueviolet !important;
     margin-top: 35px;
     min-height: 60px;
-}
+  
+} */
 
 #text-input:focus {
-    border: 2px solid blueviolet !important;
+    border: 1px solid #b621fe !important;
 }
 .send_button{
-    border: 2px solid blueviolet;
-    padding: 0 10px;
+    border: 2px solid #1da1f2;
+    padding:0 10px;
     border-radius: 3px;
-    color: blueviolet;
+    position:relative;
+    top:15px;
+    left:12px;
+    color: #1da1f2;
     background-color: #ffffff !important;
+    box-shadow: none;
+  
+}
+
+.edit_button, .more_button, .delete_button{
+    border: 2px solid #1da1f2;
+    padding:0 10px;
+    border-radius: 3px;
+    margin:3px;
+    color: #1da1f2;
+    background-color: #ffffff !important;
+    box-shadow: none;
+  
+
+}
+.send_button:disabled{
+color:#1da1f2 !important;
+        opacity: .5;
+        
+    
 }
 .button_next{
     display: flex;
@@ -37,16 +87,35 @@
     height: 9vh;
     align-items: center;
 }
-.button_container{
-    display: flex;
-    justify-content: center;
-    margin-top: -2%;
-}
+
 .card-post-home{
 border-radius:8px !important;
 }
 
-.card.small .card-content, .card.medium .card-content, .card.large .card-content {
-    max-height: 1000%;
-    overflow: hidden;
+.card.small.white.card-content.black-text.card-on-home{
+    padding: 30px;
+    border-radius: 4px;
+    height:237px;
+    cursor: pointer;
+    border: 1px solid #e6ecf0;
+  
+    
 }
+.name_on_message{
+    position: relative;
+    bottom: 18px;
+}
+.all-messages{
+
+margin-bottom:-30px;
+}
+@media (max-width: 767px) {
+    .send_button{
+        left: 84%;
+        top: 8px;
+    }
+    .input_text_post{
+    height:145px;
+    }
+    
+  }

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import React from 'react'
 import SignOutButton from './SignOut'
 import M from 'materialize-css'
@@ -46,6 +46,7 @@ class NavigationAuth extends React.Component {
                   {/* <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.FORUM}>Forum</Link></li> */}
                   <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.HOME}>Home</Link></li>
                   <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.ACCOUNT}>My Account</Link></li>
+                  
                   {!!authUser.roles[ROLES.ADMIN] && (
                     <li>
                       <Link className='grey-text text-darken-3' to={ROUTES.ADMIN}>Admin</Link>
