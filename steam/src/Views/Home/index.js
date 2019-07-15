@@ -1,5 +1,4 @@
 import React from 'react'
-import Date from '../../Components/Date'
 import { compose } from 'recompose'
 import { withFirebase } from '../../Components/Firebase'
 import {
@@ -9,6 +8,7 @@ import {
 } from '../../Components/Session'
 import './home.css'
 import Modal from 'react-responsive-modal'
+// import EventOnForum from '../../Components/Event-On-Forum'
 
 const HomePage = () => (
   <div>
@@ -108,6 +108,7 @@ class MessagesBase extends React.Component {
               <div class="row prueba2">
                 <div class="col s12 l8 ">
               <div className='input_text_post col s12 m12 l12'>
+              <img src={authUser ? authUser.photoURL : null } className='center photo-on-post' alt="" />
                 <form className='container input-text col s12 m12 l12 ' onSubmit={event => this.onCreateMessage(event, authUser)}>
                   <textarea  id='text-input'
                     type='text'
@@ -118,7 +119,9 @@ class MessagesBase extends React.Component {
                   <button className='send_button waves-effect waves-light btn' disabled={isInvalid} type='submit'><i class='material-icons'>near_me</i> </ button>
                 </form>
               </div>
+         
               </div>
+              
               </div>
               </div>
             )}
@@ -131,17 +134,20 @@ class MessagesBase extends React.Component {
             ) : (
                 <div>There are no messages ...</div>
               )}
-            <div className='button_next'>
-              <button className='more_button waves-effect waves-light btn' type='button' onClick={this.onNextPage}>
+              <div className='container '>
+              <div class="row prueba2">
+                <div class="col s12 m12 l8 center ">
+              <button className='more_button waves-effect waves-light btn-sm' type='button' onClick={this.onNextPage}>
                 More
            </button>
-            </div>
+            </div></div></div>
           </div>
         )}
       </AuthUserContext.Consumer>
     )
   }
 }
+
 
 const MessageList = ({
   authUser,
@@ -201,26 +207,32 @@ class MessageItem extends React.Component {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
+   
       <li className="all-messages">
         {editMode ? (
           <div className='container'>
+            <div className='row prueba2'> 
+            <div className='col s12 m12 l8 '>
             <textarea
               id='input_edit'
               type='textarea-edit'
               value={editText}
               onChange={this.onChangeEditText}
-            />
+            /></div>
+            </div>
           </div>
         ) : (
             <div className='container '>
               <div class="row prueba2">
                 <div class="col s12 m12 l8 ">
                   <div class="card small white card-content black-text card-on-home">
-                      <span class="title-on-card"><img src={message.userPhoto} className='center photo-post' alt="Photo on User"></img>  <span className="name_on_message">{message.nameUser}</span></span>
+                  
+                      <span class="title-on-card"><img src={message.userPhoto} className='center photo-post' alt=""></img>  <span className="name_on_message">{message.nameUser}</span></span>
                       <p class='message-on-forum'> {message.text}</p>
                       <p class='message-on-forum'> {message.editedAt && <span>(Edited)</span>}</p>
                     </div>
-                  </div>
+                   
+                  </div> 
                 </div>
                 </div>
           
@@ -229,9 +241,11 @@ class MessageItem extends React.Component {
           <span>
             {editMode ? (
               <div className='container'>
-                <button className='send_button waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
-                <button className='send_button waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
-              </div>
+              <div class="row prueba2">
+              <div class="col s12 m12 l8 center ">
+                <button className='save_button waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
+                <button className='reset_button waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
+              </div></div></div>
            
             ) : (
             
@@ -260,6 +274,7 @@ class MessageItem extends React.Component {
           </span>
         )}
       </li>
+      
     )
   }
 }

@@ -36,7 +36,7 @@ class NavigationAuth extends React.Component {
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <div className='row'>
+          <div className='row '>
             <nav>
               <div className='nav-wrapper nav-mobile white  '>
                 <a href='#' data-target='slide-out' class='sidenav-trigger'><i className='material-icons hamburguer-menu'>menu</i></a>

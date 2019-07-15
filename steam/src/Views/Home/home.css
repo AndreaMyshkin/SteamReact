@@ -1,39 +1,49 @@
-.photo-post {
+.photo-post 
+{
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
+.photo-on-post
+{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
 
-#modal {
+#modal 
+{
     display: inline-block;
 }
 
-
-#text-input {
+#text-input 
+{
     margin-top: 2%;
     background-color: #fff;
     border-radius:10px;
     border:2px solid #1da1f2;
-    
 }
-.card-content{
+.card-content
+{
     overflow: overlay;
 }
-.title-on-card{
+.title-on-card
+{
     word-break: break-all;
     color: #424242;
     font-size: 14px;
     font-weight: bold;
 }
 
-.message-on-forum{
+.message-on-forum
+{
     color: #424242;
     font-size: 14px;
     line-height: 20px;
     font-weight: normal;
-    
 }
-.input_text_post{
+.input_text_post
+{
     background-color: #e6e9eb;
     height:100px;
     border-radius:3px;
@@ -41,30 +51,39 @@
     display:flex;
     align-items: center;
 }
-/* #input_edit{
-    border: 2px solid blueviolet !important;
-    margin-top: 35px;
-    min-height: 60px;
-  
-} */
 
-#text-input:focus {
-    border: 1px solid #b621fe !important;
+#input_edit
+{
+    border: 2px solid blueviolet ;
+    margin-top: 35px;
+    padding: 30px;
+    border-radius: 4px;
+    height:237px;
+    background-color:#fff;
+    font-size:13px;
 }
-.send_button{
+
+#text-input:focus
+{
+    border: 1.5px solid #1da1f2  !important;
+    border-radius: 4px;
+}
+.send_button
+{
     border: 2px solid #1da1f2;
     padding:0 10px;
     border-radius: 3px;
     position:relative;
-    top:15px;
-    left:12px;
+    bottom:40px;
+    left:93.77%;
     color: #1da1f2;
     background-color: #ffffff !important;
-    box-shadow: none;
-  
+    box-shadow: none; 
 }
 
-.edit_button, .more_button, .delete_button{
+.edit_button, .more_button, .delete_button,
+.save_button, .reset_button
+{
     border: 2px solid #1da1f2;
     padding:0 10px;
     border-radius: 3px;
@@ -72,50 +91,111 @@
     color: #1da1f2;
     background-color: #ffffff !important;
     box-shadow: none;
-  
-
+    margin-top:0;
+    margin-bottom:15px;
 }
-.send_button:disabled{
+
+.save_button, .reset_button
+{
+    margin-bottom:22px;
+    font-weight: bold;
+}
+.send_button:disabled
+{
 color:#1da1f2 !important;
-        opacity: .5;
-        
-    
-}
-.button_next{
-    display: flex;
-    justify-content: center;
-    height: 9vh;
-    align-items: center;
+opacity: .5;
 }
 
-.card-post-home{
+.more_button
+{
+   font-weight: bold;
+   height: 5vh;
+   margin-top:18px;
+   text-transform: uppercase;
+}
+.card-post-home
+{
 border-radius:8px !important;
 }
 
-.card.small.white.card-content.black-text.card-on-home{
+.card.small.white.card-content.black-text.card-on-home
+{
     padding: 30px;
     border-radius: 4px;
     height:237px;
     cursor: pointer;
-    border: 1px solid #e6ecf0;
-  
-    
+    border: 1px solid #e6ecf0;  
 }
-.name_on_message{
+.name_on_message
+{
     position: relative;
     bottom: 18px;
 }
-.all-messages{
-
+.all-messages
+{
 margin-bottom:-30px;
 }
-@media (max-width: 767px) {
-    .send_button{
-        left: 84%;
-        top: 8px;
+
+/* .targets-messages{
+position: relative;
+bottom:500px;
+
+} */
+
+
+@media (max-width: 767px) 
+{   
+    .targets-messages{
+        position: relative;
+       top:10px;
+        
+        }
+
+    .title-on-card
+    {
+        font-size: 12px;
     }
-    .input_text_post{
+    
+
+.message-on-forum
+{
+       font-size:12px;
+
+}
+    .send_button
+    {
+        left: 84%;
+        top:-18px;
+    }
+    
+    .input_text_post
+    {
     height:145px;
     }
+    
+    #text-input
+    {
+    height: 70px;
+    position: relative;
+    bottom:24px;
+    }
+    
+    .more_button
+     {
+        
+        top:10px;
+    }
+    
+    .hide-authUser
+    {
+      display: none;
+    }
+    .photo-on-post{
+    margin-bottom:64px;
+    }
+    .hide-event{
+    display:none;
+    }
+    
     
   }
