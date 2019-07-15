@@ -87,14 +87,12 @@ class NavigationAuth extends React.Component {
   }
 }
 
-// const NavigationNonAuth = () => (
-//   <nav>
-//     <div className='nav-wrapper white'>
-//       <ul className='right hide-on-med-and-down'>
-//         <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.SIGN_IN}>Sign In</Link></li>
-//       </ul>
-//     </div>
-//   </nav>
-// )
+ const NavigationNonAuth = () => (
+   <nav>
+    <div className='nav-wrapper white'>
+      <ul className='right hide-on-med-and-down'>
+     </ul>   </div>
+   </nav>
+ )
 
 export default Navigation

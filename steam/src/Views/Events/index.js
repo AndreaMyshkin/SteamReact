@@ -3,6 +3,15 @@ import Language from '../../assets/language.png'
 import Tense from '../../assets/photo-1516491575772-bab9f75948c0-e1560193406381.jpg'
 import Nights from '../../assets/Nights.png'
 import './events.css'
+import { compose } from 'recompose'
+import {
+  AuthUserContext,
+  withAuthorization,
+  withEmailVerification
+} from '../../Components/Session'
+import { withFirebase } from '../../Components/Firebase'
+
+
 
 const Events = () => (
 
@@ -81,4 +90,12 @@ Date : 19 to 21 hours, July 17.</p>
 
 )
 
-export default Events
+
+// const LoginManagement = withFirebase(LoginManagementBase)
+
+const condition = authUser => !!authUser
+
+export default compose(
+  withEmailVerification,
+  withAuthorization(condition),
+)(Events)
