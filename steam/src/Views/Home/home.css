@@ -41,6 +41,7 @@
     font-size: 14px;
     line-height: 20px;
     font-weight: normal;
+    
 }
 .input_text_post
 {
@@ -61,6 +62,9 @@
     height:237px;
     background-color:#fff;
     font-size:13px;
+    position: relative;
+    bottom:420px;
+ 
 }
 
 #text-input:focus
@@ -93,12 +97,26 @@
     box-shadow: none;
     margin-top:0;
     margin-bottom:15px;
+    position: relative;
+    bottom:420px;
 }
-
+.confirm_button{
+    border: 2px solid #b621fe;
+    padding:0 15px;
+    border-radius: 3px;
+    margin:3px;
+    color: #b621fe;
+    background-color: #ffffff !important;
+    box-shadow: none;
+    margin-top:0;
+    font-weight: bold;
+    
+}
 .save_button, .reset_button
 {
     margin-bottom:22px;
     font-weight: bold;
+    bottom:420px;
 }
 .send_button:disabled
 {
@@ -125,6 +143,7 @@ border-radius:8px !important;
     height:237px;
     cursor: pointer;
     border: 1px solid #e6ecf0;  
+    bottom:420px;
 }
 .name_on_message
 {
@@ -135,28 +154,41 @@ border-radius:8px !important;
 {
 margin-bottom:-30px;
 }
+.styles_overlay__CLSq- {
+    transition: opacity 200ms ease-in-out;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.styles_modal__gNwvD {
 
-/* .targets-messages{
-position: relative;
-bottom:500px;
+    padding: 4.2rem;
+    max-width:30rem;
+    outline:none;
+    text-align:center;
+    color:#424242;
+}
 
-} */
 
 
 @media (max-width: 767px) 
 {   
-    .targets-messages{
-        position: relative;
-       top:10px;
-        
-        }
-
+    .card.small.white.card-content.black-text.card-on-home{
+        top:10px;
+    
+    }
     .title-on-card
     {
         font-size: 12px;
     }
     
-
+    .edit_button, .more_button, .delete_button,
+    .save_button, .reset_button
+    {
+    top:10px;
+    
+    }
 .message-on-forum
 {
        font-size:12px;
@@ -193,9 +225,14 @@ bottom:500px;
     .photo-on-post{
     margin-bottom:64px;
     }
-    .hide-event{
-    display:none;
+    #input_edit
+    {
+     
+        top:10px;
+     
     }
     
-    
+    .news_card{
+    display:none;
+    }
   }

@@ -8,7 +8,8 @@ import {
 } from '../../Components/Session'
 import './home.css'
 import Modal from 'react-responsive-modal'
-// import EventOnForum from '../../Components/Event-On-Forum'
+import EventOnForum from '../../Components/Event-On-Forum'
+
 
 const HomePage = () => (
   <div>
@@ -102,11 +103,12 @@ class MessagesBase extends React.Component {
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <div>
+          <div className="hola">
             {!loading && messages && (
-              <div className='container '>
-              <div class="row prueba2">
-                <div class="col s12 l8 ">
+            <div className="container">
+              <div className="row prueba2">
+                
+                <div className="col s12 l8">
               <div className='input_text_post col s12 m12 l12'>
               <img src={authUser ? authUser.photoURL : null } className='center photo-on-post' alt="" />
                 <form className='container input-text col s12 m12 l12 ' onSubmit={event => this.onCreateMessage(event, authUser)}>
@@ -121,9 +123,9 @@ class MessagesBase extends React.Component {
               </div>
          
               </div>
-              
-              </div>
-              </div>
+              <div className ="col l3 offset-l1 news_card"><EventOnForum /></div>
+              </div></div>
+         
             )}
             {messages ? (
               <MessageList
@@ -134,9 +136,9 @@ class MessagesBase extends React.Component {
             ) : (
                 <div>There are no messages ...</div>
               )}
-              <div className='container '>
+              <div className="container">
               <div class="row prueba2">
-                <div class="col s12 m12 l8 center ">
+                <div class="col s12 m12 l8  center ">
               <button className='more_button waves-effect waves-light btn-sm' type='button' onClick={this.onNextPage}>
                 More
            </button>
@@ -155,7 +157,7 @@ const MessageList = ({
   onEditMessage,
   onRemoveMessage,
 }) => (
-    <ul>
+    <ul className="all-messages-on-forum">
       {messages.map(message => (
         <MessageItem
           authUser={authUser}
@@ -210,20 +212,23 @@ class MessageItem extends React.Component {
    
       <li className="all-messages">
         {editMode ? (
-          <div className='container'>
+            <div className="container">
             <div className='row prueba2'> 
-            <div className='col s12 m12 l8 '>
+            
+            <div className='col s12 m12 l8  '>
+            
             <textarea
               id='input_edit'
               type='textarea-edit'
               value={editText}
               onChange={this.onChangeEditText}
             /></div>
-            </div>
-          </div>
+            </div></div>
+        
         ) : (
-            <div className='container '>
+             <div className="container">
               <div class="row prueba2">
+                
                 <div class="col s12 m12 l8 ">
                   <div class="card small white card-content black-text card-on-home">
                   
@@ -233,16 +238,17 @@ class MessageItem extends React.Component {
                     </div>
                    
                   </div> 
-                </div>
-                </div>
+             
+                </div></div>
+             
           
           )}
         {authUser.uid === message.userId && (
           <span>
             {editMode ? (
-              <div className='container'>
+              <div className="container">
               <div class="row prueba2">
-              <div class="col s12 m12 l8 center ">
+              <div class="col s12 m12 l6 offset-l1 center ">
                 <button className='save_button waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
                 <button className='reset_button waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
               </div></div></div>
@@ -250,9 +256,9 @@ class MessageItem extends React.Component {
             ) : (
             
             
-              <div className='container '>
+              <div className="container">
               <div class="row prueba2">
-                <div class="col s12 m12 l8 center ">
+                <div class="col s12 m12 l6 offset-l1 center ">
               <button className='edit_button waves-effect waves-light btn' onClick={this.onToggleEditMode}> <i class='material-icons'>create</i></button>
              
              <button className='delete_button waves-effect waves-light btn' onClick={this.onOpenModal}><i class='material-icons'>delete</i></button>
@@ -261,10 +267,10 @@ class MessageItem extends React.Component {
             {!editMode && (
               <div id='modal'>
                 <Modal open={open} onClose={this.onCloseModal}>
-                  <h3>Are you sure?</h3>
+                  <h5>Are you sure?</h5>
                   <div>
                     <button
-                      type='button' className=' edit_button waves-effect waves-light btn'
+                      type='button' className=' waves-effect waves-light btn confirm_button'
                       onClick={() => onRemoveMessage(message.uid)}
                     > Yes</button>
                   </div>
