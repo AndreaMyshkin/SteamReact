@@ -163,11 +163,15 @@ margin-bottom:-30px;
 }
 .styles_modal__gNwvD {
 
-    padding: 4.2rem;
+    padding: 4.6rem;
     max-width:30rem;
     outline:none;
     text-align:center;
     color:#424242;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    font-weight: bold;
 }
 
 

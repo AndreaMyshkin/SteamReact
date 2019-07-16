@@ -5,11 +5,10 @@ import Nights from '../../assets/Nights.png'
 import './events.css'
 import { compose } from 'recompose'
 import {
-  AuthUserContext,
   withAuthorization,
   withEmailVerification
 } from '../../Components/Session'
-import { withFirebase } from '../../Components/Firebase'
+
 
 
 
@@ -91,11 +90,9 @@ Date : 19 to 21 hours, July 17.</p>
 )
 
 
-// const LoginManagement = withFirebase(LoginManagementBase)
-
 const condition = authUser => !!authUser
 
 export default compose(
   withEmailVerification,
-  withAuthorization(condition),
+  withAuthorization(condition)
 )(Events)

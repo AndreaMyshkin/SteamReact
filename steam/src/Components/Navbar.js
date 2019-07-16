@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import React from 'react'
 import SignOutButton from './SignOut'
 import M from 'materialize-css'
 import * as ROUTES from '../Constants/routesFirebase'
 import { AuthUserContext } from './Session'
-// import 'materialize-css/dist/css/materialize.min.css'
 import * as ROLES from '../Constants/roles'
 import './navbar.css'
 
@@ -40,15 +39,15 @@ class NavigationAuth extends React.Component {
             <nav>
               <div className='nav-wrapper nav-mobile white  '>
                 <a href='#' data-target='slide-out' class='sidenav-trigger'><i className='material-icons hamburguer-menu'>menu</i></a>
-                <a href='#' className='brand-logo'><Link className='grey-text text-darken-3 font-nav-logo' to={ROUTES.HOME}> STEAM</Link></a>
+                <a href='#' className='brand-logo'><NavLink className='grey-text text-darken-3 font-nav-logo' to={ROUTES.HOME}> STEAM</NavLink></a>
                 <ul className='right hide-on-med-and-down'>
-                  <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.HOME}>Home</Link></li>
-                  <li> <Link className='grey-text text-darken-3 font-nav' to={ROUTES.EVENTS}>Events</Link></li>
-                  <li><Link className='grey-text text-darken-3 font-nav' to={ROUTES.ACCOUNT}>My Account</Link></li>
+                  <li> <NavLink className='grey-text text-darken-3 font-nav' to={ROUTES.HOME}>Home</NavLink></li>
+                  <li> <NavLink className='grey-text text-darken-3 font-nav' to={ROUTES.EVENTS}>Events</NavLink></li>
+                  <li><NavLink className='grey-text text-darken-3 font-nav' to={ROUTES.ACCOUNT}>My Account</NavLink></li>
 
                   {!!authUser.roles[ROLES.ADMIN] && (
                     <li>
-                      <Link className='grey-text text-darken-3' to={ROUTES.ADMIN}>Admin</Link>
+                      <NavLink className='grey-text text-darken-3' to={ROUTES.ADMIN}>Admin</NavLink>
                     </li>
                   )}
                   <li className='font-nav'><SignOutButton /></li>
@@ -62,16 +61,16 @@ class NavigationAuth extends React.Component {
                 <h6 className='center user-name-on-side-nav'>{authUser ? authUser.username : null}</h6>
               </div></li>
               <div className='options-on-side-nav'>
-                <li> <Link className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.HOME}>Home</Link></li>
+                <li> <NavLink className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.HOME}>Home</NavLink></li>
                 <li><div class='divider' /></li>
-                <li> <Link className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.EVENTS}>Events</Link></li>
+                <li> <NavLink className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.EVENTS}>Events</NavLink></li>
                 <li><div class='divider' /></li>
-                <li><Link className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.ACCOUNT}>My Account</Link></li>
+                <li><NavLink className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.ACCOUNT}>My Account</NavLink></li>
                 <li><div class='divider' /></li>
                 {!!authUser.roles[ROLES.ADMIN] && (
           <>
             <li>
-              <Link className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.ADMIN}>Admin</Link>
+              <NavLink className='grey-text text-darken-3 font-nav-mobile' to={ROUTES.ADMIN}>Admin</NavLink>
             </li>
             <li><div class='divider' /></li></>
                 )}
@@ -87,12 +86,6 @@ class NavigationAuth extends React.Component {
   }
 }
 
- const NavigationNonAuth = () => (
-   <nav>
-    <div className='nav-wrapper white'>
-      <ul className='right hide-on-med-and-down'>
-     </ul>   </div>
-   </nav>
- )
+
 
 export default Navigation
