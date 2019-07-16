@@ -45,7 +45,8 @@ const AccountPage = () => (
           <div className="card panel col l7 col s10 offset-s1 offset-l1 account-card">
              
           <PasswordChangeForm />
-          <LoginManagement authUser={authUser} />
+          <div className="buttons_social">
+          <LoginManagement authUser={authUser} /></div>
         </div>
         
         
@@ -111,7 +112,7 @@ class LoginManagementBase extends Component {
         <div className="center methods-text">
           Sign In Methods:
         </div>
-        <ul>
+        <ul className="buttons_social">
           {SIGN_IN_METHODS.map(signInMethod => {
             const onlyOneLeft = activeSignInMethods.length === 1
             const isEnabled = activeSignInMethods.includes(

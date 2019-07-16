@@ -1,52 +1,242 @@
-.photo-post {
+.photo-post 
+{
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
+.photo-on-post
+{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
 
-#modal {
+#modal 
+{
     display: inline-block;
 }
 
-
-#text-input {
+#text-input 
+{
     margin-top: 2%;
+    background-color: #fff;
+    border-radius:10px;
+    border:2px solid #1da1f2;
 }
-.card-content{
+.card-content
+{
     overflow: overlay;
 }
-#input_edit{
-    border: 2px solid blueviolet !important;
-    margin-top: 35px;
-    min-height: 60px;
+.title-on-card
+{
+    word-break: break-all;
+    color: #424242;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-#text-input:focus {
-    border: 2px solid blueviolet !important;
+.message-on-forum
+{
+    color: #424242;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    
 }
-.send_button{
-    border: 2px solid blueviolet;
-    padding: 0 10px;
-    border-radius: 3px;
-    color: blueviolet;
-    background-color: #ffffff !important;
-}
-.button_next{
-    display: flex;
-    justify-content: center;
-    height: 9vh;
+.input_text_post
+{
+    background-color: #e6e9eb;
+    height:100px;
+    border-radius:3px;
+    border: 1px solid #e6ecf0;
+    display:flex;
     align-items: center;
 }
-.button_container{
-    display: flex;
-    justify-content: center;
-    margin-top: -2%;
+
+#input_edit
+{
+    border: 2px solid blueviolet ;
+    margin-top: 35px;
+    padding: 30px;
+    border-radius: 4px;
+    height:237px;
+    background-color:#fff;
+    font-size:13px;
+    position: relative;
+    bottom:420px;
+ 
 }
-.card-post-home{
+
+#text-input:focus
+{
+    border: 1.5px solid #1da1f2  !important;
+    border-radius: 4px;
+}
+.send_button
+{
+    border: 2px solid #1da1f2;
+    padding:0 10px;
+    border-radius: 3px;
+    position:relative;
+    bottom:40px;
+    left:93.77%;
+    color: #1da1f2;
+    background-color: #ffffff !important;
+    box-shadow: none; 
+}
+
+.edit_button, .more_button, .delete_button,
+.save_button, .reset_button
+{
+    border: 2px solid #1da1f2;
+    padding:0 10px;
+    border-radius: 3px;
+    margin:3px;
+    color: #1da1f2;
+    background-color: #ffffff !important;
+    box-shadow: none;
+    margin-top:0;
+    margin-bottom:15px;
+    position: relative;
+    bottom:420px;
+}
+.confirm_button{
+    border: 2px solid #b621fe;
+    padding:0 15px;
+    border-radius: 3px;
+    margin:3px;
+    color: #b621fe;
+    background-color: #ffffff !important;
+    box-shadow: none;
+    margin-top:0;
+    font-weight: bold;
+    
+}
+.save_button, .reset_button
+{
+    margin-bottom:22px;
+    font-weight: bold;
+    bottom:420px;
+}
+.send_button:disabled
+{
+color:#1da1f2 !important;
+opacity: .5;
+}
+
+.more_button
+{
+   font-weight: bold;
+   height: 5vh;
+   margin-top:18px;
+   text-transform: uppercase;
+}
+.card-post-home
+{
 border-radius:8px !important;
 }
 
-.card.small .card-content, .card.medium .card-content, .card.large .card-content {
-    max-height: 1000%;
-    overflow: hidden;
+.card.small.white.card-content.black-text.card-on-home
+{
+    padding: 30px;
+    border-radius: 4px;
+    height:237px;
+    cursor: pointer;
+    border: 1px solid #e6ecf0;  
+    bottom:420px;
 }
+.name_on_message
+{
+    position: relative;
+    bottom: 18px;
+}
+.all-messages
+{
+margin-bottom:-30px;
+}
+.styles_overlay__CLSq- {
+    transition: opacity 200ms ease-in-out;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.styles_modal__gNwvD {
+
+    padding: 4.6rem;
+    max-width:30rem;
+    outline:none;
+    text-align:center;
+    color:#424242;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 767px) 
+{   
+    .card.small.white.card-content.black-text.card-on-home{
+        top:10px;
+    
+    }
+    .title-on-card
+    {
+        font-size: 12px;
+    }
+    
+    .edit_button, .more_button, .delete_button,
+    .save_button, .reset_button
+    {
+    top:10px;
+    
+    }
+.message-on-forum
+{
+       font-size:12px;
+
+}
+    .send_button
+    {
+        left: 84%;
+        top:-18px;
+    }
+    
+    .input_text_post
+    {
+    height:145px;
+    }
+    
+    #text-input
+    {
+    height: 70px;
+    position: relative;
+    bottom:24px;
+    }
+    
+    .more_button
+     {
+        
+        top:10px;
+    }
+    
+    .hide-authUser
+    {
+      display: none;
+    }
+    .photo-on-post{
+    margin-bottom:64px;
+    }
+    #input_edit
+    {
+     
+        top:10px;
+     
+    }
+    
+    .news_card{
+    display:none;
+    }
+  }

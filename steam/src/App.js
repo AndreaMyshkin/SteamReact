@@ -4,7 +4,7 @@ import Navigation from './Components/Navbar'
 import SignUpPage from './Components/SignUp'
 import SignInPage from './Components/SignIn'
 import HomePage from './Views/Home'
-import Forum from './Views/Forum'
+import Events from './Views/Events'
 import Comunity from './Views/Comunity'
 import AccountPage from './Components/Account'
 import AdminPage from './Components/Admin'
@@ -16,13 +16,12 @@ const App = () => (
   <Router>
     <div>
       <Navigation />
-      {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
       <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
       <Route path={ROUTES.COMUNITY} component={Comunity} />
-      <Route path={ROUTES.FORUM} component={Forum} />
+      <Route path={ROUTES.EVENTS} component={Events} />
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route path={ROUTES.SIGN_IN} exact component={SignInPage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>

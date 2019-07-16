@@ -8,6 +8,8 @@ import {
 } from '../../Components/Session'
 import './home.css'
 import Modal from 'react-responsive-modal'
+import EventOnForum from '../../Components/Event-On-Forum'
+
 
 const HomePage = () => (
   <div>
@@ -35,7 +37,7 @@ class MessagesBase extends React.Component {
       userPhoto: authUser.photoURL,
       userId: authUser.uid,
       nameUser: authUser.username,
-      createdAt: this.props.firebase.serverValue.TIMESTAMP,
+      createdAt: this.props.firebase.serverValue.TIMESTAMP
     })
     this.setState({ text: '' })
     this.setState({ counter: 0 })
@@ -50,7 +52,7 @@ class MessagesBase extends React.Component {
     this.props.firebase.message(message.uid).set({
       ...messageSnapshot,
       text,
-      editedAt: this.props.firebase.serverValue.TIMESTAMP,
+      editedAt: this.props.firebase.serverValue.TIMESTAMP
     })
   }
 
@@ -101,18 +103,29 @@ class MessagesBase extends React.Component {
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <div>
+          <div className="hola">
             {!loading && messages && (
-              <div className='input_text_post'>
-                <form className='container input-text' onSubmit={event => this.onCreateMessage(event, authUser)}>
-                  <textarea id='text-input'
+            <div className="container">
+              <div className="row prueba2">
+                
+                <div className="col s12 l8">
+              <div className='input_text_post col s12 m12 l12'>
+              <img src={authUser ? authUser.photoURL : null } className='center photo-on-post' alt="" />
+                <form className='container input-text col s12 m12 l12 ' onSubmit={event => this.onCreateMessage(event, authUser)}>
+                  <textarea  id='text-input'
                     type='text'
                     value={text}
                     onChange={this.onChangeText}
+                    className="col  s12 m10 l11 "
                   />
-                  <button className='send_button waves-effect waves-light btn' disabled={isInvalid} type='submit'><i class='material-icons'>near_me</i> Send</ button>
+                  <button className='send_button waves-effect waves-light btn' disabled={isInvalid} type='submit'><i class='material-icons'>near_me</i> </ button>
                 </form>
               </div>
+         
+              </div>
+              <div className ="col l3 offset-l1 news_card"><EventOnForum /></div>
+              </div></div>
+         
             )}
             {messages ? (
               <MessageList
@@ -123,11 +136,13 @@ class MessagesBase extends React.Component {
             ) : (
                 <div>There are no messages ...</div>
               )}
-            <div className='button_next'>
-              <button className='send_button waves-effect waves-light btn' type='button' onClick={this.onNextPage}>
+              <div className="container">
+              <div class="row prueba2">
+                <div class="col s12 m12 l8  center ">
+              <button className='more_button waves-effect waves-light btn-sm' type='button' onClick={this.onNextPage}>
                 More
            </button>
-            </div>
+            </div></div></div>
           </div>
         )}
       </AuthUserContext.Consumer>
@@ -135,13 +150,14 @@ class MessagesBase extends React.Component {
   }
 }
 
+
 const MessageList = ({
   authUser,
   messages,
   onEditMessage,
   onRemoveMessage,
 }) => (
-    <ul>
+    <ul className="all-messages-on-forum">
       {messages.map(message => (
         <MessageItem
           authUser={authUser}
@@ -193,50 +209,68 @@ class MessageItem extends React.Component {
     const { authUser, message, onRemoveMessage } = this.props
     const { editMode, editText } = this.state
     return (
-      <li>
+   
+      <li className="all-messages">
         {editMode ? (
-          <div className='container'>
+            <div className="container">
+            <div className='row prueba2'> 
+            
+            <div className='col s12 m12 l8  '>
+            
             <textarea
               id='input_edit'
               type='textarea-edit'
               value={editText}
               onChange={this.onChangeEditText}
-            />
-          </div>
+            /></div>
+            </div></div>
+        
         ) : (
-            <div className='container'>
-              <div class="row">
-                <div class="col s12 m12 l12">
-                  <div class="card small white card-content">
-                    <div class="card-content black-text">
-                      <span class="card-title"><img src={message.userPhoto} className='center photo-post' alt=""></img>   {message.nameUser}</span>
-                      <p> {message.text}</p>
-                      <p> {message.editedAt && <span>(Edited)</span>}</p>
+             <div className="container">
+              <div class="row prueba2">
+                
+                <div class="col s12 m12 l8 ">
+                  <div class="card small white card-content black-text card-on-home">
+                  
+                      <span class="title-on-card"><img src={message.userPhoto} className='center photo-post' alt=""></img>  <span className="name_on_message">{message.nameUser}</span></span>
+                      <p class='message-on-forum'> {message.text}</p>
+                      <p class='message-on-forum'> {message.editedAt && <span>(Edited)</span>}</p>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                   
+                  </div> 
+             
+                </div></div>
+             
+          
           )}
         {authUser.uid === message.userId && (
           <span>
             {editMode ? (
-              <div className='container'>
-                <button className='send_button waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
-                <button className='send_button waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
-              </div>
-            ) : (<div className='container button_container'>
-              <button className='send_button waves-effect waves-light btn' onClick={this.onToggleEditMode}> <i class='material-icons'>create</i>Edit</button>
-              <button className='send_button waves-effect waves-light btn' onClick={this.onOpenModal}><i class='material-icons'>delete</i>Delete</button>
-            </div>
+              <div className="container">
+              <div class="row prueba2">
+              <div class="col s12 m12 l6 offset-l1 center ">
+                <button className='save_button waves-effect waves-light btn' onClick={this.onSaveEditText}>Save</button>
+                <button className='reset_button waves-effect waves-light btn' onClick={this.onToggleEditMode}>Reset</button>
+              </div></div></div>
+           
+            ) : (
+            
+            
+              <div className="container">
+              <div class="row prueba2">
+                <div class="col s12 m12 l6 offset-l1 center ">
+              <button className='edit_button waves-effect waves-light btn' onClick={this.onToggleEditMode}> <i class='material-icons'>create</i></button>
+             
+             <button className='delete_button waves-effect waves-light btn' onClick={this.onOpenModal}><i class='material-icons'>delete</i></button>
+           </div> </div></div>
               )}
             {!editMode && (
               <div id='modal'>
                 <Modal open={open} onClose={this.onCloseModal}>
-                  <h3>Are you sure?</h3>
+                  <h5>Are you sure?</h5>
                   <div>
                     <button
-                      type='button' className=' send_button waves-effect waves-light btn'
+                      type='button' className=' waves-effect waves-light btn confirm_button'
                       onClick={() => onRemoveMessage(message.uid)}
                     > Yes</button>
                   </div>
@@ -246,6 +280,7 @@ class MessageItem extends React.Component {
           </span>
         )}
       </li>
+      
     )
   }
 }
